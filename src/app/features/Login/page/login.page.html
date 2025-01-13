@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="logo">
+      <img src="assets/images/logo-cable-color.png" alt />
+    </div>
+    <h2>{{config.i18n.title}}</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="username"></label>
+        <input
+          formControlName="username"
+          type="text"
+          [placeholder]="config.i18n.placeholderUser"
+        />
+      </div>
+      <div class="input-group">
+        <label for="password"></label>
+        <input
+          formControlName="password"
+          type="password"
+          [placeholder]="config.i18n.placeholderPassword"
+        />
+      </div>
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="primary-button"
+      >
+        Entrar
+      </button>
+    </form>
+  </div>
+</div>
