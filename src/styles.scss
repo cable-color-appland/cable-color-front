@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #561B85;
+  /* Morado */
+  --secondary-color-blue: #157FFB;
+  /* Azul botones */
+  --black: #000000;
+  /* Negro*/
+  --white: #FFFFFC;
+  /* Blacno */
+  --gray: #C0C0C0;
+  /* Gris */
+}
+
+.primary-button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.primary-button:hover:not(:disabled) {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.primary-button:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background: var(--secondary-color-blue);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.secondary-button:hover:not(:disabled) {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-button:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+
+body {
+  background-color: #561B85;
+}
