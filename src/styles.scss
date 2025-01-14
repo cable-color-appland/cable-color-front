@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #561B85;
+  --primary-color: #561c84;
   /* Morado */
   --secondary-color-blue: #157FFB;
   /* Azul botones */
@@ -54,5 +54,5 @@
 }
 
 body {
-  background-color: #561B85;
+  background-color: var(--primary-color);
 }
