@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   apiUrl:
-    'https://cable-color-gmaxakhhdnhtc2h6.brazilsouth-01.azurewebsites.net/api',
+    'back-cable-color-c6ctgcadengrgnes.canadacentral-01.azurewebsites.net/api',
   menu: [
     {
       text: 'Inicio',
