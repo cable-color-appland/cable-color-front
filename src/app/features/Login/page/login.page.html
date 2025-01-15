@@ -9,20 +9,34 @@
     <h2>{{config.i18n.title}}</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="input-group">
-        <label for="username"></label>
+        <label for="username">{{config.i18n.emptySpace}}</label>
         <input
+          id="username"
           formControlName="username"
           type="text"
           [placeholder]="config.i18n.placeholderUser"
         />
+        <div
+          *ngIf="f['username'].touched && f['username'].errors"
+          class="error-message"
+        >
+          <span>{{config.i18n.errorMessageUser}}</span>
+        </div>
       </div>
       <div class="input-group">
-        <label for="password"></label>
+        <label for="password">{{config.i18n.emptySpace}}</label>
         <input
+          id="password"
           formControlName="password"
           type="password"
           [placeholder]="config.i18n.placeholderPassword"
         />
+        <div
+          *ngIf="f['password'].touched && f['password'].errors"
+          class="error-message"
+        >
+          <span>{{config.i18n.errorMessagePassword}}</span>
+        </div>
       </div>
       <button
         type="submit"
