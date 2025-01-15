@@ -13,6 +13,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/Login/login.module').then((m) => m.LoginPageModule),
   },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./features/home/home.module').then((m) => m.HomeModule),
+    // canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
