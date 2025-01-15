@@ -4,7 +4,7 @@
       #sidenav
       class="sidenav-body mat-elevation-z8"
       mode="side"
-      opened
+      [opened]="isSidenavOpened"
       [fixedTopGap]="56"
       [fixedBottomGap]="1"
     >
@@ -62,6 +62,13 @@
       [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''"
     >
       <mat-toolbar>
+        <button
+          mat-icon-button
+          (click)="toggleSidenav()"
+          aria-label="Toggle sidenav"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
         <p>Cable Color</p>
         <span class="example-spacer"></span>
         <button mat-icon-button matTooltip="Cerrar sesión">

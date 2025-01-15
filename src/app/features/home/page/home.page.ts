@@ -8,9 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePage implements OnInit {
   public menu = environment.menu;
+  isSidenavOpened = true;
 
   constructor(private readonly renderer: Renderer2) {}
   ngOnInit(): void {
     this.renderer.setStyle(document.body, 'background-color', '#ffffff');
+  }
+
+  toggleSidenav(): void {
+    this.isSidenavOpened = !this.isSidenavOpened;
   }
 }
