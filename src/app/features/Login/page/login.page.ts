@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { loginConfig } from './loging.config';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UtilsService } from '@shared/utils/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginPage {
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly apiService: ApiService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly utilsService: UtilsService
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -29,11 +31,18 @@ export class LoginPage {
   onSubmit() {
     if (this.loginForm.valid) {
       this.login();
+    } else {
+      this.loginForm.markAllAsTouched();
     }
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 
   private async login() {
     try {
+      this.utilsService.show();
       const { username, password } = this.loginForm.value;
       const dataLogin = {
         username: username,
@@ -47,7 +56,10 @@ export class LoginPage {
 
       this.updateData(response);
     } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
       console.log(error);
+    } finally {
+      this.utilsService.hide();
     }
   }
 

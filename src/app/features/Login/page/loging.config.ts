@@ -4,5 +4,8 @@ export const loginConfig = Object.freeze({
     endpoint: 'User/Login',
     placeholderUser: 'Ingresa tu usuario',
     placeholderPassword: 'contraseña',
+    errorMessageUser: 'Por favor ingresar el usuario',
+    errorMessagePassword: 'Por favor ingresar la contraseña',
+    emptySpace: ' ',
   },
 });
