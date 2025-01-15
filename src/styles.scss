@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
-  --primary-color: #561B85;
+  --primary-color: #561c84;
   /* Morado */
   --secondary-color-blue: #157FFB;
   /* Azul botones */
@@ -9,6 +11,12 @@
   /* Blacno */
   --gray: #C0C0C0;
   /* Gris */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-color);
+  margin: 0px;
 }
 
 .primary-button {
@@ -51,8 +59,4 @@
 .secondary-button:disabled {
   background: var(--gray);
   cursor: not-allowed;
-}
-
-body {
-  background-color: #561B85;
 }
