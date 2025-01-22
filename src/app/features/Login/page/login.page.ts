@@ -53,8 +53,6 @@ export class LoginPage {
         this.config.i18n.endpoint,
         dataLogin
       );
-
-      console.log(response);
       this.updateData(response);
     } catch (error) {
       this.utilsService.showToast('Error al ingresar' + error, 'error');
