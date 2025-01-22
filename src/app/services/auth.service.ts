@@ -44,7 +44,6 @@ export class AuthService {
   private setUserData(token: string): void {
     try {
       const decoded: any = jwtDecode(token);
-      console.log(decoded);
       sessionStorage.setItem('userData', JSON.stringify(decoded));
     } catch (error) {}
   }
