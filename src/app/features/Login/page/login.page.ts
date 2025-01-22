@@ -54,6 +54,7 @@ export class LoginPage {
         dataLogin
       );
 
+      console.log(response);
       this.updateData(response);
     } catch (error) {
       this.utilsService.showToast('Error al ingresar' + error, 'error');
@@ -64,7 +65,7 @@ export class LoginPage {
   }
 
   public updateData(response: any) {
-    const token = response.token.token;
+    const token = response.token;
     if (token) {
       this.authService.saveToken(token);
       this.router.navigate(['/home']);
