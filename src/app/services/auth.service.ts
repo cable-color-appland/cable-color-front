@@ -44,9 +44,10 @@ export class AuthService {
   public getUserData(): any {
     if (!this.userData) {
       const token = localStorage.getItem(this.TOKEN_KEY);
+      console.log(token);
       if (token) {
         const decoded: any = jwtDecode(token);
-        this.userData = decoded ? JSON.parse(decoded) : null;
+        this.userData = decoded ?? null;
       } else {
         this.logout();
       }

@@ -16,7 +16,14 @@ export class HomePage implements OnInit {
     private readonly autService: AuthService
   ) {}
   ngOnInit(): void {
+    this.updateMenu(
+      this.menu,
+      this.autService.getUserField('Modules').split(',')
+    );
     this.renderer.setStyle(document.body, 'background-color', '#ffffff');
+    if (window.innerWidth <= 768) {
+      this.isSidenavOpened = false;
+    }
   }
 
   toggleSidenav(): void {
@@ -29,5 +36,41 @@ export class HomePage implements OnInit {
       'var(--primary-color)'
     );
     this.autService.logout();
+  }
+
+  updateMenu(menu: any[], moduleRoleResponse: string[]) {
+    console.log(moduleRoleResponse);
+    const moduleNames = new Set(moduleRoleResponse);
+
+    menu.forEach((menuItem) => {
+      const hasAccess = moduleNames.has(menuItem.module);
+      menuItem.enabled = hasAccess;
+
+      if (menuItem.children && menuItem.children.length > 0) {
+        menuItem.children.forEach((childItem: any) => {
+          childItem.enabled = moduleNames.has(childItem.module);
+        });
+
+        if (
+          !hasAccess &&
+          menuItem.children.some((child: any) => child.enabled)
+        ) {
+          menuItem.enabled = true;
+        }
+      }
+    });
+
+    const newMenu = menu
+      .filter((element) => element.enabled)
+      .map((element) => {
+        if (element.children) {
+          element.children = element.children.filter(
+            (child: any) => child.enabled
+          );
+        }
+        return element;
+      });
+
+    this.menu = newMenu;
   }
 }
