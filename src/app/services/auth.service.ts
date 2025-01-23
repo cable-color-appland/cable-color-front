@@ -22,7 +22,6 @@ export class AuthService {
 
   saveToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
-    this.setUserData(token);
   }
 
   logout(): void {
@@ -41,17 +40,16 @@ export class AuthService {
       return true;
     }
   }
-  private setUserData(token: string): void {
-    try {
-      const decoded: any = jwtDecode(token);
-      sessionStorage.setItem('userData', JSON.stringify(decoded));
-    } catch (error) {}
-  }
 
   public getUserData(): any {
     if (!this.userData) {
-      const data = sessionStorage.getItem('userData');
-      this.userData = data ? JSON.parse(data) : null;
+      const token = localStorage.getItem(this.TOKEN_KEY);
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        this.userData = decoded ? JSON.parse(decoded) : null;
+      } else {
+        this.logout();
+      }
     }
     return this.userData;
   }
