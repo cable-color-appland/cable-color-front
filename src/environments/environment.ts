@@ -19,19 +19,13 @@ export const environment = {
         {
           text: 'Países',
           icon: 'flag',
-          module: 'Paises',
+          module: 'Country',
           enabled: true,
         },
         {
           text: 'Regiones',
           icon: 'signpost',
-          module: 'Departamentos',
-          enabled: true,
-        },
-        {
-          text: 'Ciudades',
-          icon: 'apartment',
-          module: 'Ciudades',
+          module: 'Region',
           enabled: true,
         },
       ],
@@ -46,13 +40,13 @@ export const environment = {
         {
           text: 'Usuarios',
           icon: 'group',
-          module: 'Usuarios',
+          module: 'User',
           enabled: true,
         },
         {
           text: 'Roles',
           icon: 'perm_identity',
-          module: 'Roles',
+          module: 'Role',
           enabled: true,
         },
         {
