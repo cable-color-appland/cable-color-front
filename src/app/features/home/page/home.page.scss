@@ -11,6 +11,12 @@
         margin-right: 0.75rem !important;
       }
 
+      ::ng-deep .mat-expansion-panel {
+        margin-bottom: 4px;
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+
       ::ng-deep .mat-expansion-panel-body {
         padding: 0 !important;
       }
