@@ -85,4 +85,14 @@ export class ApiService {
       headers: this.createHeaders(),
     });
   }
+  public async patchQueryString<T>(path: string, data: any): Promise<T> {
+    const params = new HttpParams({ fromObject: data });
+    return await lastValueFrom(
+      this.http.post<T>(`${this.url}/${path}`, null, {
+        headers: this.createHeaders(),
+        params: params,
+        responseType: 'json',
+      })
+    ).catch(this.handleError);
+  }
 }

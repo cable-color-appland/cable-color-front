@@ -19,6 +19,7 @@ const routes: Routes = [
       import('./features/home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
   },
+  { path: 'role-management', loadChildren: () => import('./features/role-management/role-management.module').then(m => m.RoleManagementModule) },
 ];
 
 @NgModule({
