@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { SessionService } from 'src/app/services/session.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,12 +13,12 @@ export class HomePage implements OnInit {
 
   constructor(
     private readonly renderer: Renderer2,
-    private readonly autService: AuthService
+    private readonly sessionService: SessionService
   ) {}
   ngOnInit(): void {
     this.updateMenu(
       this.menu,
-      this.autService.getUserField('Modules').split(',')
+      this.sessionService.getUserField('Modules').split(',')
     );
     this.renderer.setStyle(document.body, 'background-color', '#ffffff');
     if (window.innerWidth <= 768) {
@@ -35,7 +35,7 @@ export class HomePage implements OnInit {
       'background-color',
       'var(--primary-color)'
     );
-    this.autService.logout();
+    this.sessionService.logout();
   }
 
   updateMenu(menu: any[], moduleRoleResponse: string[]) {

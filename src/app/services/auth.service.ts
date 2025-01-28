@@ -1,67 +1,30 @@
 import { Injectable } from '@angular/core';
+import { SessionService } from './session.service';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+import { ApiService } from './api.service';
+import { UtilsService } from '@shared/utils/utils.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly TOKEN_KEY = 'Token';
-  private userData: any = null;
+  constructor(
+    private readonly sessionService: SessionService,
+    private readonly router: Router,
+    private readonly apiService: ApiService,
+    private readonly utilsService: UtilsService
+  ) {}
 
-  constructor(private readonly router: Router) {}
-
-  isLoggedIn(): boolean {
-    const token = this.getToken();
-    return token !== null && !this.isTokenExpired(token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
-  }
-
-  saveToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
-  }
-
-  logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    this.clearUserData();
-    this.router.navigate(['/login']);
-  }
-
-  private isTokenExpired(token: string): boolean {
+  public async login(dataLogin: any) {
     try {
-      const decoded: any = jwtDecode(token);
-      const currentTime = Math.floor(Date.now() / 1000);
-      return decoded.exp < currentTime;
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      return true;
-    }
-  }
-
-  public getUserData(): any {
-    if (!this.userData) {
-      const token = localStorage.getItem(this.TOKEN_KEY);
-      console.log(token);
-      if (token) {
-        const decoded: any = jwtDecode(token);
-        this.userData = decoded ?? null;
-      } else {
-        this.logout();
+      const response: any = await this.apiService.post('User/Login', dataLogin);
+      if (response.token) {
+        this.sessionService.saveToken(response.token);
+        this.router.navigate(['/home']);
       }
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
     }
-    return this.userData;
-  }
-
-  public getUserField(field: string): any {
-    const user = this.getUserData();
-    return user ? user[field] : null;
-  }
-
-  private clearUserData(): void {
-    this.userData = null;
-    sessionStorage.removeItem('userData');
   }
 }

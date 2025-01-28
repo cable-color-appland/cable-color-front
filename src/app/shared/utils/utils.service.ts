@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilsService {
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  loading$ = this.loadingSubject.asObservable();
+  private readonly loadingSubject = new BehaviorSubject<boolean>(false);
+  public readonly isLoading$: Observable<boolean> =
+    this.loadingSubject.asObservable();
   public showToast(title: string, icono: any, timeOut?: number) {
     const Toast = Swal.mixin({
       toast: true,
