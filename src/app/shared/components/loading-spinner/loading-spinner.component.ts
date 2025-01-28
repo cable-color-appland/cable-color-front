@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./loading-spinner.component.scss'],
 })
 export class LoadingSpinnerComponent {
-  isLoading: Observable<boolean>;
+  constructor(private readonly loadingService: UtilsService) {}
 
-  constructor(private loadingService: UtilsService) {
-    this.isLoading = this.loadingService.loading$;
+  get isLoading$() {
+    return this.loadingService.isLoading$;
   }
 }

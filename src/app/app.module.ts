@@ -4,10 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthService } from './services/auth.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material.module';
 import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/loading-spinner.component';
+import { SessionService } from './services/session.service';
 @NgModule({
   declarations: [AppComponent, LoadingSpinnerComponent],
   imports: [
@@ -16,7 +16,7 @@ import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/load
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [provideHttpClient(), AuthService, provideAnimationsAsync()],
+  providers: [provideHttpClient(), SessionService, provideAnimationsAsync()],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

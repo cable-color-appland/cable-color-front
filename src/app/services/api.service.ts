@@ -7,6 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { UtilsService } from '@shared/utils/utils.service';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +16,19 @@ import { environment } from '../../environments/environment';
 export class ApiService {
   private headers: { [key: string]: string } = {};
   private readonly url = environment.apiUrl;
+  private token: string | null = null;
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly sessionService: SessionService,
+    private readonly loadingService: UtilsService
+  ) {}
+
+  private setHeaders() {
     this.headers['Content-Type'] = 'application/json';
-    const token = localStorage.getItem('Token');
-    if (token) {
-      this.headers['Authorization'] = `Bearer ${token}`;
+    this.token = this.sessionService.getToken();
+    if (this.token) {
+      this.headers['Authorization'] = `Bearer ${this.token}`;
     }
   }
 
@@ -28,40 +37,51 @@ export class ApiService {
   }
 
   private createHeaders(): HttpHeaders {
+    this.setHeaders();
     return new HttpHeaders({ ...this.headers });
   }
 
+  private async handleRequest<T>(request: Observable<T>): Promise<T> {
+    this.loadingService.show();
+    try {
+      return await lastValueFrom(request);
+    } catch (error) {
+      return this.handleError(error);
+    } finally {
+      this.loadingService.hide();
+    }
+  }
   public async get<T>(path: string, params?: HttpParams): Promise<T> {
-    return await lastValueFrom(
+    return this.handleRequest(
       this.http.get<T>(`${this.url}/${path}`, {
         params,
         headers: this.createHeaders(),
       })
-    ).catch(this.handleError);
+    );
   }
 
   public async post<T>(path: string, data: any): Promise<T> {
-    return await lastValueFrom(
+    return this.handleRequest(
       this.http.post<T>(`${this.url}/${path}`, data, {
         headers: this.createHeaders(),
       })
-    ).catch(this.handleError);
+    );
   }
 
   public async put<T>(path: string, data: any): Promise<T> {
-    return await lastValueFrom(
+    return this.handleRequest(
       this.http.put<T>(`${this.url}/${path}`, data, {
         headers: this.createHeaders(),
       })
-    ).catch(this.handleError);
+    );
   }
 
   public async patch<T>(path: string, data: any): Promise<T> {
-    return await lastValueFrom(
+    return this.handleRequest(
       this.http.patch<T>(`${this.url}/${path}`, data, {
         headers: this.createHeaders(),
       })
-    ).catch(this.handleError);
+    );
   }
 
   public async delete<T>(path: string, data?: any): Promise<T> {
@@ -70,19 +90,12 @@ export class ApiService {
       body: data,
     };
 
-    return await lastValueFrom(
+    return this.handleRequest(
       this.http.delete<T>(`${this.url}/${path}`, options)
-    ).catch(this.handleError);
+    );
   }
 
-  private handleError(error: HttpErrorResponse): Promise<never> {
+  private handleError(error: any): Promise<never> {
     return Promise.reject(error);
-  }
-
-  public downloadExcel(path: string): Observable<Blob> {
-    return this.http.get(`${this.url}/${path}`, {
-      responseType: 'blob',
-      headers: this.createHeaders(),
-    });
   }
 }
