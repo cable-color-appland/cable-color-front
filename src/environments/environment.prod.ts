@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://localhost:7223/api',
+   apiUrl:
+    'https://back-cable-color-c6ctgcadengrgnes.canadacentral-01.azurewebsites.net/api',
   cacheDuration: 28800000,
   menu: [
     {
