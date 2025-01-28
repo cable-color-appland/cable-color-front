@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { fadeAnimation } from '@shared/animations';
 import { SessionService } from 'src/app/services/session.service';
 import { environment } from 'src/environments/environment';
 
@@ -6,6 +8,7 @@ import { environment } from 'src/environments/environment';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  animations: [fadeAnimation],
 })
 export class HomePage implements OnInit {
   public menu = environment.menu;

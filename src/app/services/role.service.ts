@@ -14,9 +14,13 @@ export class RoleService {
     private readonly utilsService: UtilsService
   ) {}
 
-  public async GetRoles() {
+  public async GetRoles(useCache: boolean = false) {
     try {
-      return await this.apiService.get(EndpointsServices.GetRoles);
+      const roles = await this.apiService.get(
+        EndpointsServices.GetRoles,
+        useCache
+      );
+      return roles;
     } catch (error) {
       this.utilsService.showToast('Error al ingresar' + error, 'error');
       console.log(error);
