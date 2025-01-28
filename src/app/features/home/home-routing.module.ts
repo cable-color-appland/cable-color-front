@@ -7,6 +7,13 @@ const routes: Routes = [
     path: '',
     component: HomePage,
     children: [
+      {
+        path: 'Role',
+        loadChildren: () =>
+          import('../role-management/role-management.module').then(
+            (m) => m.RoleManagementModule
+          ),
+      },
       // {
       //   path: '',
       //   redirectTo: '',

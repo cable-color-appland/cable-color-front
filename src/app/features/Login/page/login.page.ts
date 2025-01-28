@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { loginConfig } from './loging.config';
-import { ApiService } from 'src/app/services/api.service';
-import { UtilsService } from '@shared/utils/utils.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

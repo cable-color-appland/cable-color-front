@@ -1,0 +1,33 @@
+.action-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-role-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.secondary-button {
+  width: 300px;
+}
+
+
+@media (max-width: 768px) {
+  .add-role-form {
+    flex-direction: column;
+  }
+
+  .action-area {
+    justify-content: center;
+  }
+}

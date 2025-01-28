@@ -1,0 +1,59 @@
+@use '@angular/material' as mat;
+@import '../styles.scss';
+
+$primary-palette: mat.define-palette((50: var(--primary-color),
+      100: var(--primary-color),
+      200: var(--primary-color),
+      300: var(--primary-color),
+      400: var(--primary-color),
+      500: var(--primary-color),
+      600: var(--primary-color),
+      700: var(--primary-color),
+      800: var(--primary-color),
+      900: var(--primary-color),
+      contrast: (50: #ffffff,
+        100: #ffffff,
+        200: #ffffff,
+        300: #ffffff,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+      ),
+    ));
+
+
+$secondary-palette: mat.define-palette((50: var(--secondary-color-blue),
+      100: var(--secondary-color-blue),
+      200: var(--secondary-color-blue),
+      300: var(--secondary-color-blue),
+      400: var(--secondary-color-blue),
+      500: var(--secondary-color-blue),
+      600: var(--secondary-color-blue),
+      700: var(--secondary-color-blue),
+      800: var(--secondary-color-blue),
+      900: var(--secondary-color-blue),
+      contrast: (50: #ffffff,
+        100: #ffffff,
+        200: #ffffff,
+        300: #ffffff,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+      ),
+    ));
+
+
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+$custom-theme: mat.define-light-theme((color: (primary: $primary-palette,
+        accent: $secondary-palette,
+        warn: $warn-palette,
+      )));
+
+@include mat.all-component-themes($custom-theme);

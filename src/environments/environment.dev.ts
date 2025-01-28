@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:7223/api',
+  cacheDuration: 28800000,
   menu: [
     {
       text: 'Inicio',
@@ -48,6 +49,7 @@ export const environment = {
           icon: 'perm_identity',
           module: 'Role',
           enabled: true,
+          routerLink: 'Role',
         },
         {
           text: 'Modulos por Role',

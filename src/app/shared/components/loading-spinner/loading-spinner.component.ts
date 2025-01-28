@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { UtilsService } from '@shared/utils/utils.service';
-import { Observable } from 'rxjs';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-loading-spinner',

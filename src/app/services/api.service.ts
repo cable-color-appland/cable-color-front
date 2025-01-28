@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { UtilsService } from '@shared/utils/utils.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { SessionService } from './session.service';
 
 @Injectable({
@@ -17,6 +17,7 @@ export class ApiService {
   private headers: { [key: string]: string } = {};
   private readonly url = environment.apiUrl;
   private token: string | null = null;
+  private readonly cacheDuration = environment.cacheDuration;
 
   constructor(
     private readonly http: HttpClient,
@@ -51,13 +52,54 @@ export class ApiService {
       this.loadingService.hide();
     }
   }
-  public async get<T>(path: string, params?: HttpParams): Promise<T> {
-    return this.handleRequest(
+  // public async get<T>(path: string, params?: HttpParams): Promise<T> {
+  //   return this.handleRequest(
+  //     this.http.get<T>(`${this.url}/${path}`, {
+  //       params,
+  //       headers: this.createHeaders(),
+  //     })
+  //   );
+  // }
+
+  private cache = new Map<string, { data: any; expiry: number }>();
+
+  public async get<T>(
+    path: string,
+    useCache: boolean = false,
+    params?: HttpParams
+  ): Promise<T> {
+    const cacheKey = this.generateCacheKey(path, params);
+
+    if (useCache && this.cache.has(cacheKey)) {
+      const cachedEntry = this.cache.get(cacheKey);
+      if (cachedEntry && Date.now() < cachedEntry.expiry) {
+        console.log('Cache hit:', cacheKey);
+        return cachedEntry.data;
+      } else {
+        this.cache.delete(cacheKey);
+      }
+    }
+
+    const response = await this.handleRequest(
       this.http.get<T>(`${this.url}/${path}`, {
         params,
         headers: this.createHeaders(),
       })
     );
+
+    if (useCache) {
+      this.cache.set(cacheKey, {
+        data: response,
+        expiry: Date.now() + this.cacheDuration,
+      });
+    }
+
+    return response;
+  }
+
+  private generateCacheKey(path: string, params?: HttpParams): string {
+    const paramString = params ? params.toString() : '';
+    return `${path}?${paramString}`;
   }
 
   public async post<T>(path: string, data: any): Promise<T> {
