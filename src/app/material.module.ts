@@ -45,6 +45,7 @@ const matModules = [
   MatTabsModule,
   MatProgressSpinnerModule,
   MatOptionModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 export const EndpointsServices = {
   login: 'User/Login',
-  GetRoles: 'Role',
+  Roles: 'Role',
   GetModules: 'Module',
   GetModulesByRole: 'ModuleRole',
 };

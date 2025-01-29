@@ -20,6 +20,11 @@ table {
 .secondary-button {
   width: 300px;
 }
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
 
 
 @media (max-width: 768px) {
