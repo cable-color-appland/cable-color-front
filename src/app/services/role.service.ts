@@ -71,4 +71,18 @@ export class RoleService {
       return null;
     }
   }
+  public async UpdateMenuByRole(roleId: string, menu: any[]) {
+    try {
+      const roles = await this.apiService.post(
+        `${EndpointsServices.postModuleRole}/${roleId}`,
+        menu
+      );
+      this.utilsService.showToast('Menu actualizado para el role', 'success');
+      return roles;
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
+      return null;
+    }
+  }
 }

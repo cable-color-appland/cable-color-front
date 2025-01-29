@@ -40,6 +40,7 @@
           <mat-checkbox
             [checked]="row.selected"
             [value]="row.id"
+            (change)="onCheckboxChange($event, row.id)"
           ></mat-checkbox></td
       ></ng-container>
 
