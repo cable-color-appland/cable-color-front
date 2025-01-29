@@ -4,6 +4,7 @@ import { EndpointsServices } from '../const/endpoints';
 import { ApiService } from './api.service';
 import { SessionService } from './session.service';
 import { UtilsService } from './utils.service';
+import { Messages } from 'src/assets/Messages/Messages';
 
 @Injectable({
   providedIn: 'root',
@@ -18,28 +19,28 @@ export class RoleService {
     try {
       return await this.apiService.get(EndpointsServices.Roles);
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
 
   public async AddRole(role: any) {
     try {
-      return await this.apiService.post(`${EndpointsServices.Roles}?roleName=${role}`, role);
+      return await this.apiService.post(
+        `${EndpointsServices.Roles}?roleName=${role}`,
+        role
+      );
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
 
   public async EditRole(roleId: number, roleName: string) {
     try {
-      return await this.apiService.put(`${EndpointsServices.Roles}?roleId=${roleId}&roleName=${roleName}`,null);
+      return await this.apiService.put(
+        `${EndpointsServices.Roles}?roleId=${roleId}&roleName=${roleName}`,
+        null
+      );
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
@@ -52,8 +53,6 @@ export class RoleService {
       );
       return roles;
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
@@ -66,8 +65,6 @@ export class RoleService {
       );
       return roles;
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
@@ -77,11 +74,9 @@ export class RoleService {
         `${EndpointsServices.postModuleRole}/${roleId}`,
         menu
       );
-      this.utilsService.showToast('Menu actualizado para el role', 'success');
+      this.utilsService.showToast(Messages.MENU_BY_ROLE_UPDATED, 'success');
       return roles;
     } catch (error) {
-      this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
       return null;
     }
   }
