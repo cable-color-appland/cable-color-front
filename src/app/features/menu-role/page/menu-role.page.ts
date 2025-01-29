@@ -55,8 +55,29 @@ export class MenurolePage implements OnInit {
 
   private async getAllModulesById(id: string) {
     this.modulesRole = await this.roleService.GetMenuByRole(id);
-    // get ModuleRole
     this.modulesToLoad();
   }
-  public onUpdateAccess() {}
+
+  public onCheckboxChange(event: MatCheckboxChange, roleId: string) {
+    const updatedDataSource = this.listModule.map((item: any) => {
+      if (item.id === roleId) {
+        item.selected = event.checked;
+      }
+      return item;
+    });
+    this.listModule = updatedDataSource;
+  }
+  public onUpdateAccess() {
+    const modulesAccess: any = [];
+    this.listModule.forEach((element: any) => {
+      if (element.selected)
+        modulesAccess.push({
+          moduleId: element.id,
+          roleId: this.selected,
+          roleName: '',
+          moduleName: '',
+        });
+    });
+    this.roleService.UpdateMenuByRole(this.selected, modulesAccess);
+  }
 }

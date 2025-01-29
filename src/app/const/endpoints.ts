@@ -3,4 +3,5 @@ export const EndpointsServices = {
   Roles: 'Role',
   GetModules: 'Module',
   GetModulesByRole: 'ModuleRole',
+  postModuleRole: 'ModuleRole',
 };
