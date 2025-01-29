@@ -44,6 +44,7 @@ const matModules = [
   MatTooltipModule,
   MatTabsModule,
   MatProgressSpinnerModule,
+  MatCardModule
 ];
 
 @NgModule({

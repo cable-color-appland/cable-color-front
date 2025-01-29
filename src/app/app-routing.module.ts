@@ -19,6 +19,15 @@ const routes: Routes = [
       import('./features/home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
   },
+  {
+    path:'access-denied',
+    loadChildren: () =>
+      import('./features/access-denied/access-denied.module').then((m) => m.AccessDeniedModule),
+  },{
+    path:'**',
+    loadChildren: () =>
+      import('./features/not-found/not-found.module').then((m) => m.NotFoundModule),
+  }
 ];
 
 @NgModule({
