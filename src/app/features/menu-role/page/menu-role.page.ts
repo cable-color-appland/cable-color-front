@@ -20,30 +20,43 @@ export class MenurolePage implements OnInit {
   public config = MenuRoleConfig;
   public roles: any = [];
   public selected = '';
+  public modules: any = [];
+  public modulesRole: any = [];
+  public listModule: any = [];
 
-  testData = [
-    { id: 'oiqweuroiuweo', name: 'test show' },
-    { id: 'adfasdfoiqweuroiuweo', name: 'test show 2' },
-  ];
-
-  constructor(
-    private readonly roleService: RoleService,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
+  constructor(private readonly roleService: RoleService) {}
   ngOnInit(): void {
     this.getAllRoles();
-    console.log('Roles en OnInit:', this.roles);
     this.getAllModules();
   }
 
   private async getAllRoles() {
     this.roles = await this.roleService.GetRoles(true);
-    this.cdr.detectChanges();
   }
 
-  private async getAllModules() {}
+  private async getAllModules() {
+    this.modules = await this.roleService.GetModules();
+  }
 
-  public onRoleSelected() {}
+  public onRoleSelected() {
+    this.getAllModulesById(this.selected);
+  }
 
+  private modulesToLoad() {
+    this.listModule = [];
+    this.modules.forEach((module: any) => {
+      const foundItem = this.modulesRole.filter(
+        (x: any) => x.moduleId.toString() == module.id
+      );
+      const selected = Object.keys(foundItem).length !== 0;
+      this.listModule.push({ ...module, selected });
+    });
+  }
+
+  private async getAllModulesById(id: string) {
+    this.modulesRole = await this.roleService.GetMenuByRole(id);
+    // get ModuleRole
+    this.modulesToLoad();
+  }
   public onUpdateAccess() {}
 }

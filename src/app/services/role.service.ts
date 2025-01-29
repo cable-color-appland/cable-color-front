@@ -27,4 +27,32 @@ export class RoleService {
       return null;
     }
   }
+
+  public async GetModules() {
+    try {
+      const roles = await this.apiService.get(
+        EndpointsServices.GetModules,
+        true
+      );
+      return roles;
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
+      return null;
+    }
+  }
+
+  public async GetMenuByRole(roleId: string) {
+    try {
+      const roles = await this.apiService.get(
+        `${EndpointsServices.GetModulesByRole}/${roleId}`,
+        false
+      );
+      return roles;
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
+      return null;
+    }
+  }
 }
