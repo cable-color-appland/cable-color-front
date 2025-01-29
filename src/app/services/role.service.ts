@@ -16,11 +16,27 @@ export class RoleService {
 
   public async GetRoles(useCache: boolean = false) {
     try {
-      const roles = await this.apiService.get(
-        EndpointsServices.GetRoles,
-        useCache
-      );
-      return roles;
+      return await this.apiService.get(EndpointsServices.Roles);
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
+      return null;
+    }
+  }
+
+  public async AddRole(role: any) {
+    try {
+      return await this.apiService.post(`${EndpointsServices.Roles}?roleName=${role}`, role);
+    } catch (error) {
+      this.utilsService.showToast('Error al ingresar' + error, 'error');
+      console.log(error);
+      return null;
+    }
+  }
+
+  public async EditRole(roleId: number, roleName: string) {
+    try {
+      return await this.apiService.put(`${EndpointsServices.Roles}?roleId=${roleId}&roleName=${roleName}`,null);
     } catch (error) {
       this.utilsService.showToast('Error al ingresar' + error, 'error');
       console.log(error);

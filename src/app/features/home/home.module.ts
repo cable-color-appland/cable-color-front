@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { HomePage } from './page/home.page';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from '@shared/material/custom-paginator-intl';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { HomePage } from './page/home.page';
     FormsModule,
   ],
   declarations: [HomePage],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule {}
