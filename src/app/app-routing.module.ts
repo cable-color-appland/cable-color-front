@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
       import('./features/home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
   },
+  { path: 'errorpage', component: NotFoundComponent },
+  { path: '**', redirectTo: '/errorpage' },
 ];
 
 @NgModule({
