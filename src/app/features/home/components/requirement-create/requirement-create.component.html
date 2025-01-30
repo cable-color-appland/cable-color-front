@@ -1,0 +1,98 @@
+<div class="container-component">
+    <hr />
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Crear requerimiento
+            </mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card>
+        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup"   class="requirement-form" >
+                    <ng-template matStepLabel>Tipo de requerimiento</ng-template>
+                    <mat-form-field  class="requirement-full-width" >
+                        <mat-label>Tipo de requerimiento</mat-label>
+                        <mat-select formControlName="firstCtrl" required  name="TypeRequest" >
+                            <mat-option *ngFor="let typeRequest of typeRequests" [value]="typeRequest.id" >{{typeRequest.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <button mat-stroked-button matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup" class="requirement-form" >
+                    <ng-template matStepLabel>Llenar requerimiento</ng-template>
+                    <hr>
+                    <mat-divider></mat-divider>
+                    <!-- Lugar, cliente o empresa, descripcion, contacto,prioridad,   -->
+
+                    <!-- Input start -->
+                    <div class="col-12">
+                        <mat-form-field class="requirement-full-width" >
+                            <mat-label>Client o Empresa</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="Ej. ProImportados Inc.,Carl Walcott" required>
+                        </mat-form-field>
+                    </div>
+                    <!-- Input end -->
+
+                    <!-- Input start -->
+                    <div class="col-12">
+                        <mat-form-field class="requirement-full-width"  >
+                            <mat-label>Lugar</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                        </mat-form-field>
+                    </div>
+                    <!-- Input end -->
+
+                    <!-- Input start -->
+                    <div class="col-12">
+                        <mat-form-field  class="requirement-full-width" >
+                            <mat-label>Descripción</mat-label>
+                            <textarea matInput formControlName="secondCtrl" placeholder="Ej. Instalación extra ..." required></textarea>
+                        </mat-form-field>
+                    </div>
+                    <!-- Input end -->
+
+                    <!-- Input start -->
+                    <div class="col-12">
+                        <mat-form-field  class="requirement-full-width" >
+                            <mat-label>Contacto</mat-label>
+                            <textarea matInput formControlName="secondCtrl" placeholder="Ej. Phil Dunphy +1 333-333-33-33, Mike Gordon +54 555-555-55-55" required></textarea>
+                        </mat-form-field>
+                    </div>
+                    <!-- Input end -->
+
+
+                    <!-- Input start -->
+                    <div class="col-12">
+                        <mat-form-field   class="requirement-full-width" >
+                            <mat-label>Prioridad</mat-label>
+                            <mat-select formControlName="secondCtrl" required  name="Priority">
+                                <mat-option *ngFor="let priority of priorities" [value]="priority.id" >{{priority.name}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <!-- Input end -->
+
+                    <div>
+                        <button mat-button matStepperPrevious>Atras</button>
+                        <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Completar</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Atras</button>
+                    <button mat-button (click)="stepper.reset()">Reiniciar</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-card>
+</div>

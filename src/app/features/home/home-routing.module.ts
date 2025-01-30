@@ -9,6 +9,10 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: '',
+        component: RequirementListComponent,
+      },
+      {
         path: 'Role',
         loadChildren: () =>
           import('../role-management/role-management.module').then(
