@@ -3,7 +3,11 @@
 
   <!-- Botón para adicionar rol -->
   <div class="action-area">
-    <button *ngIf="showButtonCreateRole" class="secondary-button" (click)="toggleAddRole()">
+    <button
+      *ngIf="showButtonCreateRole"
+      class="secondary-button"
+      (click)="toggleAddRole()"
+    >
       Crear Rol
     </button>
   </div>
@@ -12,7 +16,7 @@
     <form [formGroup]="RolesForm">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nombre del Rol</mat-label>
-        <input matInput  formControlName="RoleName" maxlength="50" />
+        <input matInput formControlName="RoleName" maxlength="50" />
         <!-- Mensajes de error -->
         <mat-error *ngIf="RolesForm.get('RoleName')?.hasError('required')">
           El nombre del rol es obligatorio
@@ -26,19 +30,21 @@
           mat-raised-button
           (click)="addOrEditRole()"
           [disabled]="RolesForm.invalid"
+          color="primary"
         >
-        {{ isEditing ? 'Actualizar' : 'Agregar' }}
+          {{ isEditing ? "Actualizar" : "Agregar" }}
         </button>
         <button mat-raised-button (click)="toggleCancelRole()">cancelar</button>
-
       </div>
     </form>
   </div>
 
-
-    
   <!-- Tabla de roles -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 full-width"
+  >
     <!-- Nombre del Rol Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
@@ -66,10 +72,6 @@
     showFirstLastButtons
   >
   </mat-paginator>
-
-
-
-
 
   <!-- Tabla de roles -->
   <!-- <table mat-table [dataSource]="roles" class="mat-elevation-z8 full-width">
