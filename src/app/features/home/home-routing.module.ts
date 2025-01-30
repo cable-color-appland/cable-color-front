@@ -10,7 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: RequirementListComponent,
+        loadChildren: () =>
+          import('../requirement/requirement.module').then(
+            (m) => m.RequirementModule
+          ),
       },
       {
         path: 'Role',
