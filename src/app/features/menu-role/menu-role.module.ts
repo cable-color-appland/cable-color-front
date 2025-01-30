@@ -1,18 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { LoginPage } from './page/login.page';
 import { MaterialModule } from 'src/app/material.module';
-import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
+import { MenurolePage } from './page/menu-role.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage,
+    component: MenurolePage,
   },
-  { path: 'errorpage', component: NotFoundComponent },
-  { path: '**', redirectTo: '/errorpage' },
 ];
 
 @NgModule({
@@ -22,7 +19,7 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
   ],
-  declarations: [LoginPage],
+  declarations: [MenurolePage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class LoginPageModule {}
+export class MenuRoleModule {}

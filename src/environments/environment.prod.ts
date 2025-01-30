@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-   apiUrl:
+  apiUrl:
     'https://back-cable-color-c6ctgcadengrgnes.canadacentral-01.azurewebsites.net/api',
   cacheDuration: 28800000,
   menu: [
@@ -55,8 +55,9 @@ export const environment = {
         {
           text: 'Modulos por Role',
           icon: 'accessibility',
-          module: 'Modulos-Role',
+          module: 'Menu-Role',
           enabled: true,
+          routerLink: 'MenuRoles',
         },
       ],
     },

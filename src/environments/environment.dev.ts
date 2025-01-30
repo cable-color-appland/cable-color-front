@@ -54,8 +54,9 @@ export const environment = {
         {
           text: 'Modulos por Role',
           icon: 'accessibility',
-          module: 'Modulos-Role',
+          module: 'Menu-Role',
           enabled: true,
+          routerLink: 'MenuRoles',
         },
       ],
     },

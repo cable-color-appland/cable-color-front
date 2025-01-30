@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from './page/home.page';
+import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -13,18 +14,24 @@ const routes: Routes = [
           import('../role-management/role-management.module').then(
             (m) => m.RoleManagementModule
           ),
+        data: {
+          breadcrumb: 'Roles',
+          title: 'Roles',
+        },
       },
-      // {
-      //   path: '',
-      //   redirectTo: '',
-      //   pathMatch: 'full',
-      //   data: {
-      //     breadcrumb: 'Inicio',
-      //     title: 'Inicio',
-      //   },
-      // },
+      {
+        path: 'MenuRoles',
+        loadChildren: () =>
+          import('../menu-role/menu-role.module').then((m) => m.MenuRoleModule),
+        data: {
+          breadcrumb: 'MenuRoles',
+          title: 'Menu por Rol',
+        },
+      },
     ],
   },
+  { path: 'errorpage', component: NotFoundComponent },
+  { path: '**', redirectTo: '/errorpage' },
 ];
 
 @NgModule({

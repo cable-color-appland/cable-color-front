@@ -1,0 +1,66 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: #333;
+  padding: 20px;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--white);
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 10px 0;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+
+    button {
+      font-size: 1rem;
+      padding: 10px 20px;
+      transition: transform 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.animation {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.floating-image {
+  width: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

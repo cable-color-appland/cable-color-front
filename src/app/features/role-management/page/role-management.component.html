@@ -3,7 +3,11 @@
 
   <!-- Botón para adicionar rol -->
   <div class="action-area">
-    <button class="secondary-button" (click)="toggleAddRole()">
+    <button
+      *ngIf="showButtonCreateRole"
+      class="secondary-button"
+      (click)="toggleAddRole()"
+    >
       Crear Rol
     </button>
   </div>
@@ -20,23 +24,27 @@
         <mat-error *ngIf="RolesForm.get('RoleName')?.hasError('minlength')">
           El nombre debe tener al menos 3 caracteres
         </mat-error>
-        <mat-error *ngIf="RolesForm.get('RoleName')?.hasError('maxlength')">
-          El nombre no debe superar los 50 caracteres
-        </mat-error>
       </mat-form-field>
-      <button
-        mat-raised-button
-        (click)="addRole()"
-        [disabled]="RolesForm.invalid"
-      >
-        Agregar
-      </button>
-      <button mat-raised-button [disabled]="RolesForm.invalid">cancelar</button>
+      <div class="action-buttons">
+        <button
+          mat-raised-button
+          (click)="addOrEditRole()"
+          [disabled]="RolesForm.invalid"
+          color="primary"
+        >
+          {{ isEditing ? "Actualizar" : "Agregar" }}
+        </button>
+        <button mat-raised-button (click)="toggleCancelRole()">cancelar</button>
+      </div>
     </form>
   </div>
 
   <!-- Tabla de roles -->
-  <table mat-table [dataSource]="roles" class="mat-elevation-z8 full-width">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 full-width"
+  >
     <!-- Nombre del Rol Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
@@ -56,4 +64,31 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+
+  <!-- Tabla de roles -->
+  <!-- <table mat-table [dataSource]="roles" class="mat-elevation-z8 full-width">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let role">{{ role.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acción</th>
+      <td mat-cell *matCellDef="let role">
+        <button mat-icon-button color="primary" (click)="editRole(role)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table> -->
 </div>

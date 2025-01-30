@@ -1,0 +1,54 @@
+<div class="container-component">
+  <h1>{{config.i18n.title}}</h1>
+  <main>
+    <div class="select-role">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ config.i18n.placeholderRole }}</mat-label>
+        <mat-select (selectionChange)="onRoleSelected()" [(value)]="selected">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onUpdateAccess()"
+          *ngIf="selected"
+        >
+          <mat-icon>update</mat-icon>
+          Actualizar Accesos
+        </button>
+      </div>
+    </div>
+
+    <table
+      *ngIf="listModule.length > 0"
+      mat-table
+      [dataSource]="listModule"
+      class="mat-elevation-z8 full-width"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Opcion del Menu</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="access">
+        <th mat-header-cell *matHeaderCellDef>Acceso</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            [checked]="row.selected"
+            [value]="row.id"
+            (change)="onCheckboxChange($event, row.id)"
+          ></mat-checkbox></td
+      ></ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="config.i18n.displayColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: config.i18n.displayColumns;"
+      ></tr>
+    </table>
+  </main>
+</div>
