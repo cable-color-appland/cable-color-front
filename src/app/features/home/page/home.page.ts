@@ -42,7 +42,6 @@ export class HomePage implements OnInit {
   }
 
   updateMenu(menu: any[], moduleRoleResponse: string[]) {
-    console.log(moduleRoleResponse);
     const moduleNames = new Set(moduleRoleResponse);
 
     menu.forEach((menuItem) => {

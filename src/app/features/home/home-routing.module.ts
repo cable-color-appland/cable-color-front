@@ -9,6 +9,13 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: '',
+        loadChildren: () =>
+          import('../requirement/requirement.module').then(
+            (m) => m.RequirementModule
+          ),
+      },
+      {
         path: 'Role',
         loadChildren: () =>
           import('../role-management/role-management.module').then(

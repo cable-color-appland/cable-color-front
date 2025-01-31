@@ -20,6 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const matModules = [
   MatButtonModule,
@@ -45,7 +46,9 @@ const matModules = [
   MatTabsModule,
   MatProgressSpinnerModule,
   MatOptionModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatCardModule,
+  MatStepperModule,
 ];
 
 @NgModule({
