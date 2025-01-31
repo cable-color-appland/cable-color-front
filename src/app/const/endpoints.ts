@@ -6,4 +6,7 @@ export const EndpointsServices = {
   postModuleRole: 'ModuleRole',
   GET_ALL_PRIORITY: 'Priority',
   GET_ALL_TYPE_REQUEST_BY_ROLE: 'TypeRequest/GetAllByRoleName',
+  GET_ALL_STATUS: 'Status',
+  GET_ALL_REGION_BY_COUNTRY_ID: 'Region/GetAllByCountryId/',
+  REQUIREMENT: 'Requirement',
 };
