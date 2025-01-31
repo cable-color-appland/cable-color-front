@@ -3,21 +3,21 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                Requerimientos
+                {{config.i18n.title}}
             </mat-card-title>
         </mat-card-header>
     </mat-card>
     <mat-divider></mat-divider>
     <mat-card>
-        <a mat-stroked-button routerLink="/home/requirement-create">Crear requerimiento</a>
+        <a class="secondary-button" routerLink="create">{{ config.i18n.createButton }}</a>
     </mat-card>
     <mat-divider></mat-divider>
     <mat-card>
         <mat-tab-group>
-            <mat-tab label="Activos">
+            <mat-tab label="{{ config.i18n.tabLeft }}"> Content 1
 
             </mat-tab>
-            <mat-tab label="Finalizados"> Content 2 </mat-tab>
+            <mat-tab label="{{ config.i18n.tabRight }}"> Content 2 </mat-tab>
         </mat-tab-group>
     </mat-card>
 </div>

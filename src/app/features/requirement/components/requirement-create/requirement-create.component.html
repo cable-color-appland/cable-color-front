@@ -3,7 +3,7 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                Crear requerimiento
+                {{config.i18n.title}}
             </mat-card-title>
         </mat-card-header>
     </mat-card>
@@ -12,21 +12,21 @@
         <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
             <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup"   class="requirement-form" >
-                    <ng-template matStepLabel>Tipo de requerimiento</ng-template>
+                    <ng-template matStepLabel>{{config.i18n.titleStep1}}</ng-template>
                     <mat-form-field  class="requirement-full-width" >
-                        <mat-label>Tipo de requerimiento</mat-label>
+                        <mat-label>{{config.i18n.typeRequest}}</mat-label>
                         <mat-select formControlName="firstCtrl" required  name="TypeRequest" >
                             <mat-option *ngFor="let typeRequest of typeRequests" [value]="typeRequest.id" >{{typeRequest.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div>
-                        <button mat-stroked-button matStepperNext>Siguiente</button>
+                        <button mat-stroked-button matStepperNext>{{config.i18n.nextButton}}</button>
                     </div>
                 </form>
             </mat-step>
             <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup" class="requirement-form" >
-                    <ng-template matStepLabel>Llenar requerimiento</ng-template>
+                    <ng-template matStepLabel>{{config.i18n.titleStep2}}</ng-template>
                     <hr>
                     <mat-divider></mat-divider>
                     <!-- Lugar, cliente o empresa, descripcion, contacto,prioridad,   -->
@@ -34,8 +34,8 @@
                     <!-- Input start -->
                     <div class="col-12">
                         <mat-form-field class="requirement-full-width" >
-                            <mat-label>Client o Empresa</mat-label>
-                            <input matInput formControlName="secondCtrl" placeholder="Ej. ProImportados Inc.,Carl Walcott" required>
+                            <mat-label>{{config.i18n.clientText}}</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="{{config.i18n.clientPlaceholder}}" required>
                         </mat-form-field>
                     </div>
                     <!-- Input end -->
@@ -43,8 +43,8 @@
                     <!-- Input start -->
                     <div class="col-12">
                         <mat-form-field class="requirement-full-width"  >
-                            <mat-label>Lugar</mat-label>
-                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                            <mat-label>{{config.i18n.placeText}}</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="{{config.i18n.placePlaceholder}}" required>
                         </mat-form-field>
                     </div>
                     <!-- Input end -->
@@ -52,8 +52,8 @@
                     <!-- Input start -->
                     <div class="col-12">
                         <mat-form-field  class="requirement-full-width" >
-                            <mat-label>Descripción</mat-label>
-                            <textarea matInput formControlName="secondCtrl" placeholder="Ej. Instalación extra ..." required></textarea>
+                            <mat-label>{{config.i18n.descriptionText}}</mat-label>
+                            <textarea matInput formControlName="secondCtrl" placeholder="{{config.i18n.descriptionPlaceholder}}" required></textarea>
                         </mat-form-field>
                     </div>
                     <!-- Input end -->
@@ -61,8 +61,8 @@
                     <!-- Input start -->
                     <div class="col-12">
                         <mat-form-field  class="requirement-full-width" >
-                            <mat-label>Contacto</mat-label>
-                            <textarea matInput formControlName="secondCtrl" placeholder="Ej. Phil Dunphy +1 333-333-33-33, Mike Gordon +54 555-555-55-55" required></textarea>
+                            <mat-label>{{config.i18n.contactText}}</mat-label>
+                            <textarea matInput formControlName="secondCtrl" placeholder="{{config.i18n.contactPlaceholder}}" required></textarea>
                         </mat-form-field>
                     </div>
                     <!-- Input end -->
@@ -71,8 +71,8 @@
                     <!-- Input start -->
                     <div class="col-12">
                         <mat-form-field   class="requirement-full-width" >
-                            <mat-label>Prioridad</mat-label>
-                            <mat-select formControlName="secondCtrl" required  name="Priority">
+                            <mat-label>{{config.i18n.priorityText}}</mat-label>
+                            <mat-select formControlName="secondCtrl"  placeholder="{{config.i18n.priorityPlaceholder}}" required  name="Priority">
                                 <mat-option *ngFor="let priority of priorities" [value]="priority.id" >{{priority.name}}</mat-option>
                             </mat-select>
                           </mat-form-field>
@@ -80,17 +80,18 @@
                     <!-- Input end -->
 
                     <div>
-                        <button mat-button matStepperPrevious>Atras</button>
-                        <button mat-button matStepperNext>Siguiente</button>
+                        <button mat-button matStepperPrevious>{{config.i18n.backButton}}</button>
+                        <button mat-button matStepperNext>{{config.i18n.nextButton}}</button>
                     </div>
                 </form>
             </mat-step>
             <mat-step>
-                <ng-template matStepLabel>Completar</ng-template>
+                <ng-template matStepLabel>{{config.i18n.titleStep3}}</ng-template>
                 <p>You are now done.</p>
+                <button mat-button (click)="stepper.reset()">{{config.i18n.saveButton}}</button>
                 <div>
-                    <button mat-button matStepperPrevious>Atras</button>
-                    <button mat-button (click)="stepper.reset()">Reiniciar</button>
+                    <button mat-button matStepperPrevious>{{config.i18n.backButton}}</button>
+                    <button mat-button (click)="stepper.reset()">{{config.i18n.resetButton}}</button>
                 </div>
             </mat-step>
         </mat-stepper>

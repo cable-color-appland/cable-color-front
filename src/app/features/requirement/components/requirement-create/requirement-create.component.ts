@@ -5,6 +5,7 @@ import { TypeRequest } from '@shared/models/TypeRequest';
 import { EndpointsServices } from 'src/app/const/endpoints';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
+import { RequirementCreateConfig } from './requirement-create.config';
 
 @Component({
   selector: 'app-requirement-create',
@@ -13,6 +14,7 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class RequirementCreateComponent implements OnInit {
 
+  public config = RequirementCreateConfig;
   typeRequests: Array<TypeRequest> = [];
   priorities: Array<Priority> = [];
 
@@ -42,7 +44,6 @@ export class RequirementCreateComponent implements OnInit {
   loadAllTypeRequest(roleId: string) {
     this.apiService.post<Array<TypeRequest>>(`${EndpointsServices.GET_ALL_TYPE_REQUEST_BY_ROLE}?roles=${roleId}`, true).then((response) => {
       this.typeRequests = response;
-      console.log(this.typeRequests);
     });
   }
 
