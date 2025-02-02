@@ -24,10 +24,12 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 
 .primary-button:hover:not(:disabled) {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }
 
 .primary-button:disabled {
@@ -45,15 +47,18 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 
 .secondary-button:hover:not(:disabled) {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }
 
 .secondary-button:disabled {
   background: var(--gray);
   cursor: not-allowed;
+  text-decoration: none;
 }
 
 .container-component {
