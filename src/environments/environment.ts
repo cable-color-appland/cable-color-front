@@ -43,6 +43,7 @@ export const environment = {
           icon: 'group',
           module: 'User',
           enabled: true,
+          routerLink: 'User',
         },
         {
           text: 'Roles',

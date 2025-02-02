@@ -1,0 +1,84 @@
+<div class="container-component">
+  <hr />
+  <mat-card>
+    <mat-card-title>Crear Usuario</mat-card-title>
+    <hr>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <mat-grid-list cols="4" rowHeight="80px">
+          <!-- Primera fila -->
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Usuario</mat-label>
+              <input matInput formControlName="userName" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" formControlName="password" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Teléfono</mat-label>
+              <input matInput formControlName="phoneNumber" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <!-- Segunda fila -->
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="firstName" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Apellido</mat-label>
+              <input matInput formControlName="lastName" required />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Rol</mat-label>
+              <mat-select formControlName="rolName" required>
+                <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>País</mat-label>
+              <mat-select formControlName="countryId" required>
+                <mat-option *ngFor="let country of countries" [value]="country.id">
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+  
+        <!-- Botón Guardar alineado a la derecha -->
+        <div fxLayout="row" fxLayoutAlign="end">
+          <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
