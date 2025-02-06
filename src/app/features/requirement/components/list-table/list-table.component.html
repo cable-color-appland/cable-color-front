@@ -1,0 +1,48 @@
+<div class="container-component">
+    <div class="table-responsive">
+        <table mat-table class="table table-striped" cdkTable [dataSource]="data" #tableRequirements>
+            <!-- type request Column -->
+            <ng-container matColumnDef="typeRequestName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header id="typeRequestName">
+                    <strong>{{ config.i18n.typeRequestLabel }}</strong>
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.typeRequestName}} </td>
+            </ng-container>
+
+            <!-- date created Column -->
+            <ng-container matColumnDef="dateCreated">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header id="dateCreated">
+                    <strong>{{ config.i18n.dateCreatedLabel }}</strong>
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.dateCreated | date:"dd/MM/yyyy"}} </td>
+            </ng-container>
+
+            <!-- status name Column -->
+            <ng-container matColumnDef="statusName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header id="statusName">
+                    <strong>{{ config.i18n.statusLabel }}</strong>
+                </th>
+                <td mat-cell *matCellDef="let row"> {{row.statusName}} </td>
+            </ng-container>
+
+            <!-- actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header id="actions">
+                    <strong>{{ config.i18n.actionsLabel }}</strong>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="detailRequirement(row)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="config.i18n.displayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: config.i18n.displayColumns;"></tr>
+        </table>
+        <!-- start paginator -->
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons>
+        </mat-paginator>
+        <!-- end paginator -->
+    </div>
+</div>
