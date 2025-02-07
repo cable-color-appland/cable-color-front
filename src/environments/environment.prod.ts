@@ -44,6 +44,7 @@ export const environment = {
           icon: 'group',
           module: 'User',
           enabled: true,
+          routerLink: 'User',
         },
         {
           text: 'Roles',
@@ -62,4 +63,6 @@ export const environment = {
       ],
     },
   ],
+  maxlengthInput:50,
+  maxlengthTextArea:100,
 };

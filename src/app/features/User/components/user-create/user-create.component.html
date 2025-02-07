@@ -1,0 +1,112 @@
+<div class="container-component">
+  <hr />
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{config.i18n.title}}
+      </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  <mat-card-content>
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+      <div class="contianer">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.username}} </mat-label>
+              <input matInput formControlName="userName"  required>
+              <mat-hint align="end">{{ userForm.controls.userName.value?.length || 0 }}/50</mat-hint>
+              <mat-error *ngIf="userForm.controls.userName.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 50
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.firstName}}</mat-label>
+              <input matInput formControlName="firstName" required/>
+              <mat-hint align="end">{{ userForm.controls.firstName.value?.length || 0 }}/50</mat-hint>
+              <mat-error *ngIf="userForm.controls.firstName.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 50
+              </mat-error>
+            </mat-form-field>
+            <!-- <mat-form-field  appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.password}}</mat-label>
+              <input matInput type="password" formControlName="password" required />
+              <mat-hint align="end">{{ userForm.controls.password.value?.length || 0 }}/50</mat-hint>
+              <mat-error *ngIf="userForm.controls.password.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 50
+              </mat-error>
+            </mat-form-field> -->
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.lastName}} </mat-label>
+              <input matInput formControlName="lastName" required/>
+              <mat-hint align="end">{{ userForm.controls.lastName.value?.length || 0 }}/50</mat-hint>
+              <mat-error *ngIf="userForm.controls.lastName.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 50
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.email}}</mat-label>
+              <input matInput type="email" formControlName="email" required/>
+              <mat-hint align="end">{{ userForm.controls.email.value?.length || 0 }}/50</mat-hint>
+              <mat-error *ngIf="userForm.controls.email.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 50
+              </mat-error>
+              <mat-error *ngIf="userForm.controls.email.hasError('email')">
+                {{config.i18n.invalidEmail}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.phoneNumber}}</mat-label>
+              <input matInput type="tel" formControlName="phoneNumber" pattern="[0-9]*" inputmode="numeric" required />
+              <mat-hint align="end">{{ userForm.controls.phoneNumber.value?.length || 0 }}/20</mat-hint>
+              <mat-error *ngIf="userForm.controls.phoneNumber.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 13
+              </mat-error>
+              <mat-error *ngIf="userForm.controls.phoneNumber.hasError('pattern')">
+                {{config.i18n.onlyNumbers}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.countryId}}</mat-label>
+              <mat-select formControlName="countryId" required>
+                <mat-option *ngFor="let country of countries" [value]="country.id">
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.rolName}}</mat-label>
+              <mat-select formControlName="rolName" required>
+                <mat-option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button mat-raised-button color="primary" type="submit">
+            {{config.i18n.saveButton}}
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+</div>

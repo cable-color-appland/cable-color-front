@@ -9,5 +9,7 @@ export const EndpointsServices = {
   GET_ALL_STATUS: 'Status',
   GET_ALL_REGION_BY_COUNTRY_ID: 'Region/GetAllByCountryId/',
   REQUIREMENT: 'Requirement',
+  GET_ALL_COUNTRY: 'Country',
+  USERS: 'User',
   GET_REQUIREMENT_BY_STATUS: 'Requirement/GetByStatus/',
 };

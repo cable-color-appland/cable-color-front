@@ -35,6 +35,15 @@ const routes: Routes = [
           title: 'Menu por Rol',
         },
       },
+      {
+        path: 'User',
+        loadChildren: () =>
+          import('../User/User.module').then((m) => m.UserModule),
+        data: {
+          breacrumb: 'User',
+          title: 'Usuarios',
+        },
+      },
     ],
   },
   { path: 'errorpage', component: NotFoundComponent },
