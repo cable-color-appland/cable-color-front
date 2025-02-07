@@ -7,10 +7,11 @@ import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from '@shared/material/custom-paginator-intl';
+import { ListTableComponent } from './components/list-table/list-table.component';
 
 
 @NgModule({
-  declarations: [RequirementListComponent,RequirementCreateComponent],
+  declarations: [RequirementListComponent,RequirementCreateComponent,ListTableComponent],
   imports: [
     CommonModule,
     RequirementRoutingModule,

@@ -94,9 +94,13 @@ export class RequirementCreateComponent implements OnInit {
         statusId: this.statuses.find(status => status.name === this.config.i18n.statusInitial)?.id,
         assignedId: this.sessionService.getUserField('UserId'),
         typeRequestId: this.firstFormGroup.value.typeRequestId,
-        attachs: 'Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod rhoncus praesent lacus ligula.',
-        projectName: 'Lorem ipsum dolor cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat , sunt in culpa.',
         regionId: this.regions.at(0)?.id,
+        RegionName: '',
+        projectName: '',
+        typeRequestName: '',
+        priorityName: '',
+        statusName: '',
+        attachs: ''
       }
       this.sendData(requirement);
     } else {

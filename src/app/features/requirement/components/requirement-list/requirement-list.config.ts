@@ -3,6 +3,8 @@ export const RequirementListConfig = Object.freeze({
       title: 'Gestión de requerimientos',
       createButton: 'Crear requerimiento',
       tabLeft: 'Activos',
-      tabRight: 'Finalizados'
+      tabRight: 'Finalizados',
+      statusOngoing: 'En proceso',
+      statusFinish:'Finalizado'
     },
   });

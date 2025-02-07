@@ -11,4 +11,9 @@ export interface Requirement {
     attatchs: string;
     executionDate: Date;
     projectName: string;
+    regionName: string;
+    statusName: string;
+    priorityName: string;
+    typeRequestName: string;
+    dateCreated: Date;
 }

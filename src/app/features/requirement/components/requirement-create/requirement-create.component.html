@@ -102,7 +102,6 @@
             <mat-step>
                 <ng-template matStepLabel>{{config.i18n.titleStep3}}</ng-template>
                 <div class="col-12">
-                    <p>You are now done.</p>
                     <button class="secondary-button" (click)="validateData()">{{config.i18n.saveButton}}</button>
                 </div>
                 <div class="col-12" >
@@ -112,4 +111,10 @@
             </mat-step>
         </mat-stepper>
     </mat-card>
+    <div class="col-12">
+        <mat-divider></mat-divider>
+        <mat-card>
+            <a mat-raised-button color="primary" routerLink="/home">{{ config.i18n.cancelButton }}</a>
+        </mat-card>
+    </div>
 </div>
