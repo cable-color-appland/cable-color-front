@@ -62,4 +62,6 @@ export const environment = {
       ],
     },
   ],
+  maxlengthInput:50,
+  maxlengthTextArea:100,
 };
