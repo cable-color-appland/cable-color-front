@@ -1,0 +1,34 @@
+<div class="container-component">
+    <br>
+    <div class="col-md-12">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    {{config.i18n.title}}
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </div>
+    <div class="col-md-12">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>
+                    <strong>{{ config.i18n.clientLabel }} : {{requirement.client}}</strong>
+                </mat-card-title>
+                <mat-card-subtitle>{{ config.i18n.typeRequestNameLabel }} : {{ requirement.typeRequestName }}</mat-card-subtitle>
+                <mat-divider></mat-divider>
+                <p> <b>{{ config.i18n.statusNameLabel }}</b> : {{ requirement.statusName }}</p>
+                <p> <b>{{ config.i18n.priorityNameLabel }}</b> : {{ requirement.priorityName }}</p>
+                <p> <b>{{ config.i18n.descriptionLabel }}</b> : {{ requirement.description }}</p>
+                <p> <b>{{ config.i18n.contactLabel }}</b> : {{ requirement.contacts }}</p>
+                <p> <b>{{ config.i18n.placeLabel }}</b> : {{ requirement.place }}</p>
+                <p> <b>{{ config.i18n.dateCreatedLabel }}</b> : {{ requirement.dateCreated | date:'dd/MM/yyyy hh:mm:ss a' }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="offset-md-10">
+        <mat-card>
+            <a mat-raised-button color="primary" routerLink="/home">{{ config.i18n.backButton }}</a>
+        </mat-card>
+    </div>
+</div>
