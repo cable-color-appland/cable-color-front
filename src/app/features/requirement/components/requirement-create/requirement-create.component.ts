@@ -11,6 +11,7 @@ import { Status } from '@shared/models/Status';
 import { Requirement } from '@shared/models/requirement';
 import { Router } from '@angular/router';
 import { Region } from '@shared/models/region';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-requirement-create',
@@ -24,6 +25,8 @@ export class RequirementCreateComponent implements OnInit {
   priorities: Array<Priority> = [];
   statuses: Array<Status> = [];
   regions: Array<Region> = [];
+  maxLenghtInput = environment.maxlengthInput;
+  maxLenghtTextArea = environment.maxlengthTextArea;
 
   constructor(
     private readonly apiService: ApiService,
@@ -42,10 +45,10 @@ export class RequirementCreateComponent implements OnInit {
   });
 
   secondFormGroup = this._formBuilder.group({
-    client: ['', [Validators.required, Validators.maxLength(50)]],
-    place: ['', [Validators.required, Validators.maxLength(50)]],
-    description: ['', [Validators.required, Validators.maxLength(100)]],
-    contacts: ['', [Validators.required, Validators.maxLength(100)]],
+    client: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
+    place: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
+    description: ['', [Validators.required, Validators.maxLength(this.maxLenghtTextArea)]],
+    contacts: ['', [Validators.required, Validators.maxLength(this.maxLenghtTextArea)]],
     priorityId: ['', Validators.required],
   });
 
@@ -95,11 +98,7 @@ export class RequirementCreateComponent implements OnInit {
         assignedId: this.sessionService.getUserField('UserId'),
         typeRequestId: this.firstFormGroup.value.typeRequestId,
         regionId: this.regions.at(0)?.id,
-        RegionName: '',
         projectName: '',
-        typeRequestName: '',
-        priorityName: '',
-        statusName: '',
         attachs: ''
       }
       this.sendData(requirement);
