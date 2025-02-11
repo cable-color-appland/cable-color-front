@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl:
-    'https://back-cable-color-c6ctgcadengrgnes.canadacentral-01.azurewebsites.net/api',
+  apiUrl: 'https://back-cc-d4cncraae5bdebhz.eastus2-01.azurewebsites.net/api',
   cacheDuration: 28800000,
   menu: [
     {
@@ -63,6 +62,6 @@ export const environment = {
       ],
     },
   ],
-  maxlengthInput:50,
-  maxlengthTextArea:100,
+  maxlengthInput: 50,
+  maxlengthTextArea: 100,
 };
