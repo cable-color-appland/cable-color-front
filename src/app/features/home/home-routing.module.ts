@@ -16,6 +16,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'request',
+        loadChildren: () =>
+          import('../requirement/requirement.module').then(
+            (m) => m.RequirementModule
+          ),
+      },
+      {
         path: 'Role',
         loadChildren: () =>
           import('../role-management/role-management.module').then(
