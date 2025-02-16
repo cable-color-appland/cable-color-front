@@ -38,13 +38,13 @@ export const environment = {
       module: 'OrderRequest',
       enabled: true,
       children: [
-        // {
-        //   text: 'Planeación',
-        //   icon: 'construction',
-        //   module: 'planing',
-        //   enabled: true,
-        //   routerLink: 'User',
-        // },
+        {
+          text: 'Planeación',
+          icon: 'construction',
+          module: 'planing',
+          enabled: true,
+          routerLink: 'request',
+        },
         {
           text: 'Requerimientos Generales',
           icon: 'workspaces',
