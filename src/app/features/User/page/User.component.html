@@ -1,6 +1,6 @@
 <div class="container-component">
   <h1>Gestión de Usuarios</h1>
-
+  <app-country-management-filter  (countrySelected)="onCountrySelected($event)" ></app-country-management-filter>
   <mat-toolbar>
     <button mat-raised-button color="primary" routerLink="create" >Crear Usuario</button>
   </mat-toolbar>

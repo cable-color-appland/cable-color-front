@@ -8,6 +8,8 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from '@shared/material/custom-paginator-intl';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UserRoutingModule } from './user-routing.module';
+import { share } from 'rxjs';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [UserComponent, UserCreateComponent],
@@ -17,6 +19,7 @@ import { UserRoutingModule } from './user-routing.module';
     CommonModule,
     MaterialModule,
     FormsModule,
+    SharedModule,
   ],
       providers: [
         { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
