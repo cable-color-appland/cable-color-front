@@ -74,4 +74,9 @@ export class SessionService {
     this.token = null;
     sessionStorage.removeItem(this.TOKEN_KEY);
   }
+
+  isSuperAdmin(): boolean {
+    const user = this.getUserData();
+    return user ? user.role.find((x: string) => x === 'SuperAdmin') !== undefined : false;
+  }
 }

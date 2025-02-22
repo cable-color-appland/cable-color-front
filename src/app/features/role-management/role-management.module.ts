@@ -4,6 +4,7 @@ import { RoleManagementComponent } from './page/role-management.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     MaterialModule,
+    SharedModule,
   ],
   declarations: [RoleManagementComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
