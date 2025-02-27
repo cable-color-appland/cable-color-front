@@ -31,7 +31,6 @@ export class CountryManagementFilterComponent implements OnInit {
   
 
   onCountrySelected(event: any) {
-    console.log("🚀 ~ CountryManagementFilterComponent ~ onCountrySelected ~ event:", event)
     this.countrySelected.emit(event);
   }
 

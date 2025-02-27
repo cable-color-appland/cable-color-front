@@ -15,7 +15,6 @@ export class ListTypeRequestComponent implements OnInit {
   public config = ListTypeRequestCongif;
   typeRequest: Array<TypeRequest> = [];
   displayCountryManagement = false;
-  selectedCountryId: string= '';
 
   constructor(private readonly apiService: ApiService,
     private readonly sessionService: SessionService) {
@@ -29,12 +28,11 @@ export class ListTypeRequestComponent implements OnInit {
   }
 
   onCountrySelected(country: any): void {
-    this.selectedCountryId = country.value;
-    this.loadAllTypeRequest(this.selectedCountryId);
+    this.loadAllTypeRequest(country.value);
   }
 
   loadAllTypeRequest(countryId: string = '') {
-    this.apiService.get<Array<TypeRequest>>(`${EndpointsServices.GET_ALL_TYPE_REQUESTS}/${countryId}`).then((response: Array<TypeRequest>) => {
+    this.apiService.get<Array<TypeRequest>>(`${EndpointsServices.GET_ALL_TYPE_REQUESTS}/GetByCountryId/${countryId}`).then((response: Array<TypeRequest>) => {
       this.typeRequest = response;
     }
     ).catch((error) => {
