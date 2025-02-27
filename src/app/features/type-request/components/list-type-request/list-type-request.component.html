@@ -1,0 +1,27 @@
+<div class="container-component">
+<br/>
+  <div class="col-md-12">
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>
+                  {{config.i18n.title}}
+              </mat-card-title>
+          </mat-card-header>
+      </mat-card>
+  </div>
+  
+  <hr/>
+  
+  <div class="col-md-12">
+      <mat-card>
+          <a mat-raised-button color="primary" routerLink="create">{{ config.i18n.createButton }}</a>
+      </mat-card>
+  </div>
+  
+<div class="col-md-12">
+      <!-- add country depends on the role -->
+      <app-country-management-filter [hidden]="!displayCountryManagement" (countrySelected)="onCountrySelected($event)"  ></app-country-management-filter>
+</div>
+
+</div>
+  

@@ -51,6 +51,15 @@ const routes: Routes = [
           title: 'Usuarios',
         },
       },
+      {
+        path: 'type-request',
+        loadChildren: () =>
+          import('../type-request/type-request.module').then((m) => m.TypeRequestModule),
+        data: {
+          breacrumb: 'type-request',
+          title: 'Tipo de requerimiento',
+        },
+      },
     ],
   },
   { path: 'errorpage', component: NotFoundComponent },

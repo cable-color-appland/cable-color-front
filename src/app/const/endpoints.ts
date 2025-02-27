@@ -12,4 +12,5 @@ export const EndpointsServices = {
   GET_ALL_COUNTRY: 'Country',
   USERS: 'User',
   GET_REQUIREMENT_BY_STATUS: 'Requirement/GetByStatus/',
+  GET_ALL_TYPE_REQUESTS: 'TypeRequest',
 };
