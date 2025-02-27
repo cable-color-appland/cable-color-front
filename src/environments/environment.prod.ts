@@ -52,6 +52,13 @@ export const environment = {
           enabled: true,
           routerLink: 'request',
         },
+        {
+          text: 'Tipo de Requerimiento',
+          icon: 'list_alt_add',
+          module: 'type-request',
+          enabled: true,
+          routerLink: 'type-request',
+        },
       ],
     },
     {

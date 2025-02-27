@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListTypeRequestCongif } from './list-type-request.config';
 import { TypeRequest } from '@shared/models/TypeRequest';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
 import { EndpointsServices } from 'src/app/const/endpoints';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-type-request',
@@ -13,8 +15,11 @@ import { EndpointsServices } from 'src/app/const/endpoints';
 export class ListTypeRequestComponent implements OnInit {
 
   public config = ListTypeRequestCongif;
-  typeRequest: Array<TypeRequest> = [];
+  typeRequests: Array<TypeRequest> = [];
   displayCountryManagement = false;
+    
+  dataSource = new MatTableDataSource<TypeRequest>(this.typeRequests);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private readonly apiService: ApiService,
     private readonly sessionService: SessionService) {
@@ -22,7 +27,7 @@ export class ListTypeRequestComponent implements OnInit {
     }
 
   ngOnInit() {
-    if(this.displayCountryManagement){
+    if(!this.displayCountryManagement){
       this.loadAllTypeRequest(this.sessionService.getUserField('CountryId'));
     }
   }
@@ -33,7 +38,7 @@ export class ListTypeRequestComponent implements OnInit {
 
   loadAllTypeRequest(countryId: string = '') {
     this.apiService.get<Array<TypeRequest>>(`${EndpointsServices.GET_ALL_TYPE_REQUESTS}/GetByCountryId/${countryId}`).then((response: Array<TypeRequest>) => {
-      this.typeRequest = response;
+      this.typeRequests = response;
     }
     ).catch((error) => {
       console.error('Error getting typeRequest:', error);
