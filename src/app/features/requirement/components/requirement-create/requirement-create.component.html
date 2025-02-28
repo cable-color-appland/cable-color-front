@@ -115,7 +115,7 @@
                     <ng-template matStepLabel>{{config.i18n.titleStep3}}</ng-template>
                     <br>
                     <div class="offset-md-10">
-                        <button class="secondary-button" (click)="validateData()">{{config.i18n.saveButton}}</button>
+                        <button mat-raised-button color="accent" (click)="validateData()">{{config.i18n.saveButton}}</button>
                     </div>
                     <div class="col-md-12">
                         <button mat-button matStepperPrevious>{{config.i18n.backButton}}</button>
@@ -128,7 +128,7 @@
     </div>
     <div class="offset-md-10">
         <mat-card>
-            <a mat-raised-button color="primary" routerLink="/home">{{ config.i18n.cancelButton }}</a>
+            <a mat-stroked-button color="primary" routerLink="/home">{{ config.i18n.cancelButton }}</a>
         </mat-card>
     </div>
 </div>

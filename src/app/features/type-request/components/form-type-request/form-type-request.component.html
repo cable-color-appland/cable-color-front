@@ -1,0 +1,42 @@
+<form [formGroup]="typeRequestForm" class="type-request-form" (ngSubmit)="submitForm()">
+<div class="row">
+  <div class="col-md-6">
+    <!-- add country depends on the role -->
+    <app-country-management-filter [hidden]="!displayCountryManagement"
+      (countrySelected)="onCountrySelected($event)"></app-country-management-filter>
+  </div>
+</div>
+  <div class="row">
+    <!-- role ID column -->
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{config.i18n.roleLabel}}</mat-label>
+        <mat-select formControlName="roleId" required name="roleId">
+          <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- type request name -->
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{config.i18n.nameTypeRequestLabel}}</mat-label>
+        <input matInput formControlName="name" placeholder="{{config.i18n.nameTypeRequestPlaceholder}}" required>
+        <mat-hint align="end">{{ typeRequestForm.controls.name.value?.length || 0
+          }}/{{maxLenghtInput}}</mat-hint>
+        <mat-error *ngIf="typeRequestForm.controls.name.hasError('maxlength')">
+          {{config.i18n.maximumCharacters}} {{maxLenghtInput}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-2">
+      <button mat-raised-button color="accent" type="submit" [disabled]="typeRequestForm.invalid">{{ typeRequestData ?
+        config.i18n.modifyButton : config.i18n.saveButton }}</button>
+    </div>
+    <div class="col-md-2">
+      <a mat-stroked-button color="primary" routerLink="/home/type-request">{{ config.i18n.cancelButton }}</a>
+    </div>
+  </div>
+</form>
