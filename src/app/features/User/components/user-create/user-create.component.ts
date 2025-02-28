@@ -7,6 +7,8 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { Messages } from 'src/assets/Messages/Messages';
 import { UserCreateConfig } from './user-create.config';
 import { environment } from '@environments/environment';
+import { SessionService } from 'src/app/services/session.service';
+import { Role } from '@shared/models/role';
 
 @Component({
   selector: 'app-user-create',
@@ -21,7 +23,8 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private apiServie: ApiService,
-     private readonly utilsService: UtilsService,
+    private readonly utilsService: UtilsService,
+    private readonly sessionService: SessionService,
   ) {
   }
 
@@ -69,7 +72,6 @@ export class UserCreateComponent implements OnInit {
       .get(EndpointsServices.GET_ALL_COUNTRY)
       .then((response) => {
         this.countries = response;
-        console.log("🚀 ~ UserCreateComponent ~ .then ~ this.countries:", this.countries)
       })
       .catch((error) => {
         console.error(error);
@@ -77,14 +79,12 @@ export class UserCreateComponent implements OnInit {
   }
 
   async loadRoles() {
-    await this.apiServie
-      .get(EndpointsServices.Roles)
-      .then((response) => {
-        this.roles = response;
-        console.log("🚀 ~ UserCreateComponent ~ .then ~ this.roles:", this.roles)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const roleName = this.sessionService.getUserField('Role');
+    await this.apiServie.get<Array<Role>>(`${EndpointsServices.GET_ROLES_BY_ID}${roleName}`,false).then((response: Array<Role>) => {
+      this.roles = response;
+    }
+    ).catch((error) => {
+      console.error('Error getting roles:', error);
+    }); 
   }
 }

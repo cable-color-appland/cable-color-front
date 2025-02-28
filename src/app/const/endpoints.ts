@@ -1,6 +1,7 @@
 export const EndpointsServices = {
   login: 'User/Login',
   Roles: 'Role',
+  GET_ROLES_BY_ID: 'Role/GetRolesById/',
   GetModules: 'Module',
   GetModulesByRole: 'ModuleRole',
   postModuleRole: 'ModuleRole',
@@ -11,6 +12,7 @@ export const EndpointsServices = {
   REQUIREMENT: 'Requirement',
   GET_ALL_COUNTRY: 'Country',
   USERS: 'User',
+  GET_ALL_USERS_BY_COUNTRY_ID: 'User/GetAllByCountryIdAsync/',
   GET_REQUIREMENT_BY_STATUS: 'Requirement/GetByStatus/',
   GET_ALL_TYPE_REQUESTS: 'TypeRequest',
 };
