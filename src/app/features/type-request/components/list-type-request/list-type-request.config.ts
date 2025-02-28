@@ -8,4 +8,4 @@ export const ListTypeRequestCongif = Object.freeze({
       roleLabel: 'Rol',
       displayColumns: ['name','roleName', 'countryName', 'actions'],
     },
-  });
+});

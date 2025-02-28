@@ -1,0 +1,16 @@
+<div class="container-component">
+    <br />
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{config.i18n.title}}
+          </mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  
+    <hr />
+    <app-form-type-request (entity)="onReceiveEntity($event)" ></app-form-type-request>
+    <hr />
+</div>

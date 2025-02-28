@@ -1,3 +1,21 @@
-<p>
-  modify-type-request works!
-</p>
+<div class="container-component">
+  <br />
+  <div class="col-md-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{config.i18n.title}}
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <hr />
+  <app-form-type-request></app-form-type-request>
+  <hr />
+  <div class="offset-md-10">
+    <mat-card>
+      <a mat-raised-button color="primary" routerLink="/home/type-request">{{ config.i18n.cancelButton }}</a>
+    </mat-card>
+  </div>
+</div>
