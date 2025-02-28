@@ -77,6 +77,7 @@ export class SessionService {
 
   isSuperAdmin(): boolean {
     const user = this.getUserData();
-    return user ? user.role.find((x: string) => x === 'SuperAdmin') !== undefined : false;
+    const RoleSuperAdmin = 'superadmin';
+    return user.Role === RoleSuperAdmin;
   }
 }

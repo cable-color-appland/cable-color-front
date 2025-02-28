@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './page/User.component';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,9 +9,10 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { UserRoutingModule } from './user-routing.module';
 import { share } from 'rxjs';
 import { SharedModule } from '@shared/shared.module';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
-  declarations: [UserComponent, UserCreateComponent],
+  declarations: [UserCreateComponent, UserListComponent],
   imports: [
     ReactiveFormsModule,
     UserRoutingModule,
