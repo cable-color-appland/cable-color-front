@@ -16,6 +16,7 @@
     <div class="col-md-6">
       <!-- add country depends on the role -->
       <app-country-management-filter [hidden]="!displayCountryManagement"
+        [selectedCountryId]="selectedCountry"
         (countrySelected)="onCountrySelected($event)"></app-country-management-filter>
     </div>
     <div class="offset-md-3 col-md-3">
@@ -68,6 +69,19 @@
         <tr mat-row *matRowDef="let row; columns: config.i18n.displayColumns;"></tr>
 
       </table>
+
+      <div *ngIf="noData" class="empty-text" >
+        <div class="cont-image">
+          <mat-icon>document_search</mat-icon>
+        </div>
+        <div class="cont-text">
+          <p>{{ config.i18n.notRecords }}</p>
+        </div>
+      </div>
+
+      <!-- Paginador -->
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons>
+      </mat-paginator>
     </div>
   </div-col-md-12>
 

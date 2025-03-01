@@ -3,6 +3,7 @@
   <div class="col-md-6">
     <!-- add country depends on the role -->
     <app-country-management-filter [hidden]="!displayCountryManagement"
+      [selectedCountryId]="typeRequestData?.countryId"
       (countrySelected)="onCountrySelected($event)"></app-country-management-filter>
   </div>
 </div>

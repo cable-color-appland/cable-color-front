@@ -17,19 +17,20 @@ export class ListTypeRequestComponent implements OnInit {
   public config = ListTypeRequestCongif;
   typeRequests: Array<TypeRequest> = [];
   displayCountryManagement = false;
-    
+
   dataSource = new MatTableDataSource<TypeRequest>(this.typeRequests);
+  noData: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  selectedCountry: string = '';
 
   constructor(private readonly apiService: ApiService,
     private readonly sessionService: SessionService) {
-      this.displayCountryManagement = this.sessionService.isSuperAdmin();
-    }
+    this.displayCountryManagement = this.sessionService.isSuperAdmin();
+  }
 
   ngOnInit() {
-    if(!this.displayCountryManagement){
-      this.loadAllTypeRequest(this.sessionService.getUserField('CountryId'));
-    }
+    this.selectedCountry = this.sessionService.getUserField('CountryId');
+    this.loadAllTypeRequest(this.selectedCountry);
   }
 
   onCountrySelected(country: any): void {
@@ -38,9 +39,13 @@ export class ListTypeRequestComponent implements OnInit {
 
   loadAllTypeRequest(countryId: string = '') {
     this.apiService.get<Array<TypeRequest>>(`${EndpointsServices.GET_ALL_TYPE_REQUESTS}/GetByCountryId/${countryId}`).then((response: Array<TypeRequest>) => {
-      this.typeRequests = response;
-    }
-    ).catch((error) => {
+      if (response.length === 0) {
+        this.noData = true;
+      } else {
+        this.noData = false;
+        this.typeRequests = response;
+      }
+    }).catch((error) => {
       console.error('Error getting typeRequest:', error);
     }
     );
