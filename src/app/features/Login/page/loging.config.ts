@@ -6,5 +6,12 @@ export const loginConfig = Object.freeze({
     errorMessageUser: 'Por favor ingresar el usuario',
     errorMessagePassword: 'Por favor ingresar la contraseña',
     emptySpace: ' ',
+    forgotPassword: '¿Olvidaste tu contraseña?',
+    titleForgot: 'Recupera tu cuenta',
+    buttons: {
+      login: 'Ingresar',
+      forgotPassword: 'Recuperar',
+      cancel: 'Cancelar',
+    },
   },
 });

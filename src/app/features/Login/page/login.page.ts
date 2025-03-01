@@ -10,7 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage {
   loginForm: FormGroup;
+  forgotForm: FormGroup;
   public config = loginConfig;
+  public isLogin = true;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -19,6 +21,9 @@ export class LoginPage {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+    });
+    this.forgotForm = this.fb.group({
+      username: ['', [Validators.required]],
     });
   }
 
@@ -41,5 +46,15 @@ export class LoginPage {
       password: password,
     };
     this.authService.login(dataLogin);
+  }
+
+  showForgot() {
+    this.isLogin = !this.isLogin;
+  }
+
+  onForgot() {
+    const { username } = this.forgotForm.value;
+    this.authService.forgotPassword(username);
+    this.showForgot();
   }
 }
