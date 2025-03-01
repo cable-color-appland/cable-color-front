@@ -1,28 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoginPage } from './page/login.page';
 import { MaterialModule } from 'src/app/material.module';
-import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: LoginPage,
-  },
-  { path: 'errorpage', component: NotFoundComponent },
-  { path: '**', redirectTo: '/errorpage' },
-];
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LoginPageRoutingModule } from './login-routing.module';
 
 @NgModule({
   imports: [
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
     CommonModule,
+    ReactiveFormsModule,
+    LoginPageRoutingModule,
     MaterialModule,
+    FormsModule,
   ],
-  declarations: [LoginPage],
+  declarations: [LoginPage, ResetPasswordComponent],
+  providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LoginPageModule {}

@@ -15,4 +15,6 @@ export const EndpointsServices = {
   GET_ALL_USERS_BY_COUNTRY_ID: 'User/GetAllByCountryIdAsync/',
   GET_REQUIREMENT_BY_STATUS: 'Requirement/GetByStatus/',
   GET_ALL_TYPE_REQUESTS: 'TypeRequest',
+  FORGOT_PASS: 'User/ForgotPassword?userName=',
+  RESET_PASS: 'User/ResetPassword',
 };
