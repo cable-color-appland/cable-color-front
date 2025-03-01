@@ -2,6 +2,11 @@
   <h1>{{config.i18n.title}}</h1>
   <main>
     <div class="select-role">
+      <app-country-management-filter
+        [hidden]="!isSuperAdmin"
+        [selectedCountryId]="selectedCountry"
+        (countrySelected)="onCountrySelected($event)"
+      ></app-country-management-filter>
       <mat-form-field appearance="outline">
         <mat-label>{{ config.i18n.placeholderRole }}</mat-label>
         <mat-select (selectionChange)="onRoleSelected()" [(value)]="selected">

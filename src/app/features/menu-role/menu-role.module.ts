@@ -1,25 +1,26 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
-import { MenurolePage } from './page/menu-role.page';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: MenurolePage,
-  },
-];
+import { MenuRolePage } from './page/menu-role.page';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from '@shared/material/custom-paginator-intl';
+import { SharedModule } from '@shared/shared.module';
+import { MenuRoleRoutingModule } from './menu-role-rouing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
+  declarations: [MenuRolePage],
   imports: [
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    CommonModule,
+    MenuRoleRoutingModule,
     MaterialModule,
+    FormsModule,
+    SharedModule,
+    CommonModule,
   ],
-  declarations: [MenurolePage],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MenuRoleModule {}

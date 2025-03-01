@@ -10,28 +10,38 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { RoleService } from 'src/app/services/role.service';
 import { MenuRoleConfig } from './menu-role.config';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-menu-role',
   templateUrl: './menu-role.page.html',
   styleUrls: ['./menu-role.page.scss'],
 })
-export class MenurolePage implements OnInit {
+export class MenuRolePage implements OnInit {
   public config = MenuRoleConfig;
   public roles: any = [];
   public selected = '';
   public modules: any = [];
   public modulesRole: any = [];
   public listModule: any = [];
+  public isSuperAdmin: boolean = false;
+  selectedCountry: string = '';
 
-  constructor(private readonly roleService: RoleService) {}
+  constructor(
+    private readonly roleService: RoleService,
+    private readonly sessionService: SessionService
+  ) {
+    this.isSuperAdmin = this.sessionService.isSuperAdmin();
+    this.selectedCountry = this.sessionService.getUserField('CountryId');
+  }
   ngOnInit(): void {
-    this.getAllRoles();
     this.getAllModules();
+    this.getAllRoles(this.sessionService.getUserField('CountryId'));
   }
 
-  private async getAllRoles() {
-    this.roles = await this.roleService.GetRoles(true);
+  private async getAllRoles(countryId: string) {
+    this.selected = '';
+    this.roles = await this.roleService.getRolesByCountryId(countryId);
   }
 
   private async getAllModules() {
@@ -79,5 +89,9 @@ export class MenurolePage implements OnInit {
         });
     });
     this.roleService.UpdateMenuByRole(this.selected, modulesAccess);
+  }
+  onCountrySelected(country: any): void {
+    this.listModule = [];
+    this.getAllRoles(country.value);
   }
 }
