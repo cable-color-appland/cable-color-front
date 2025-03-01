@@ -1,6 +1,6 @@
 export interface Role {
-  Id: string;
-  Name: string;
-  CountryId: string;
-  CountryName: string;
+  id: string;
+  name: string;
+  countryId: string;
+  countryName: string;
 }

@@ -2,7 +2,7 @@
 <!-- Country Management Filter -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>{{config.i18n.labelText}}</mat-label>
-      <mat-select (selectionChange)="onCountrySelected($event)">
+      <mat-select [formControl]="selectedCountry" (selectionChange)="onCountrySelected($event)">
         <mat-option *ngFor="let country of countries" [value]="country.id">
           {{ country.name }}
         </mat-option>

@@ -26,7 +26,7 @@ export class RoleService {
   public async AddRole(role: any) {
     try {
       return await this.apiService.post(
-        `${EndpointsServices.Roles}?roleName=${role}`,
+        `${EndpointsServices.Roles}`,
         role
       );
     } catch (error) {
@@ -34,11 +34,11 @@ export class RoleService {
     }
   }
 
-  public async EditRole(roleId: number, roleName: string) {
+  public async EditRole(roleId: number, role: any) {
     try {
       return await this.apiService.put(
-        `${EndpointsServices.Roles}?roleId=${roleId}&roleName=${roleName}`,
-        null
+        `${EndpointsServices.Roles}`,
+        role
       );
     } catch (error) {
       return null;
@@ -80,4 +80,13 @@ export class RoleService {
       return null;
     }
   }
+
+  public async getRolesByCountryId(countryId: string) {
+    try {
+      return await this.apiService.get(`${EndpointsServices.Roles}/GetRolesByCountryId/${countryId}`);
+    } catch (error) {
+      return null;
+    }
+  }
+
 }

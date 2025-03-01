@@ -1,18 +1,25 @@
 <div class="container-component">
   <h1>Gestión de Roles</h1>
 
-  <!-- Botón para adicionar rol -->
-   <app-country-management-filter></app-country-management-filter>
-  <div class="action-area">
+  <!-- add country by super admin -->
+<div class="row">
+  <div class="col-md-6">
+    <app-country-management-filter
+    [hidden]="!displayCountryManagement"
+    [selectedCountryId]="selectedCountry"
+    (countrySelected)="onCountrySelected($event)">
+   </app-country-management-filter>
+  </div>
+  <div class="col-md-6">
     <button
       *ngIf="showButtonCreateRole"
-      class="secondary-button"
-      (click)="toggleAddRole()"
-    >
+      color="accent"
+      mat-raised-button
+      (click)="toggleAddRole()">
       Crear Rol
     </button>
   </div>
-
+</div>
   <div *ngIf="showAddRoleInput" class="add-role-form">
     <form [formGroup]="RolesForm">
       <mat-form-field appearance="fill" class="full-width">

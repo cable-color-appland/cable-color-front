@@ -11,11 +11,6 @@
   </div>
 
   <hr />
-  <app-form-type-request></app-form-type-request>
+  <app-form-type-request [typeRequestData]="typeRequestModify" (entity)="onReceiveEntity($event)" ></app-form-type-request>
   <hr />
-  <div class="offset-md-10">
-    <mat-card>
-      <a mat-raised-button color="primary" routerLink="/home/type-request">{{ config.i18n.cancelButton }}</a>
-    </mat-card>
-  </div>
 </div>

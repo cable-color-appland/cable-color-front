@@ -7,5 +7,6 @@ export const ListTypeRequestCongif = Object.freeze({
       nameLabel: 'Nombre',
       roleLabel: 'Rol',
       displayColumns: ['name','roleName', 'countryName', 'actions'],
+      notRecords: 'No se encontraron resultados',
     },
 });

@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/services/api.service';
 import { RoleService } from 'src/app/services/role.service';
+import { SessionService } from 'src/app/services/session.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Messages } from 'src/assets/Messages/Messages';
 
@@ -27,16 +28,22 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
   isEditing : boolean = false; 
   RolesForm!: FormGroup;
   dataSource = new MatTableDataSource(this.roles);
+  selectedCountry: string = '';
+  displayCountryManagement = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private readonly roleService: RoleService,
-    private readonly utilsService: UtilsService
-  ) {}
+    private readonly utilsService: UtilsService,
+    private readonly sessionService: SessionService
+  ) {
+    this.displayCountryManagement = this.sessionService.isSuperAdmin();
+    this.selectedCountry = this.sessionService.getUserField('CountryId');
+  }
 
   ngOnInit(): void {
-    this.getAllRoles();
+    this.getAllRoles(this.sessionService.getUserField('CountryId'));
     this.LoadFom();
   }
 
@@ -44,8 +51,8 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  getAllRoles() {
-    this.roleService.GetRoles().then((response) => {
+  getAllRoles(countryId: string = '') {
+    this.roleService.getRolesByCountryId(countryId).then((response) => {
       this.roles = response;
       this.dataSource.data = this.roles;
     }).catch((error) => {
@@ -75,7 +82,7 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
   addOrEditRole() {
     const { RoleName, RoleId } = this.RolesForm.value;
     if(this.isEditing){
-      this.roleService.EditRole(RoleId, RoleName).then((response: any) => {
+      this.roleService.EditRole(RoleId, {id:RoleId,name:RoleName,countryId:this.selectedCountry}).then((response: any) => {
         const roleIndex = this.roles.findIndex((role: any) => role.id === RoleId);
         if (roleIndex !== -1) {
           this.roles[roleIndex] = {
@@ -95,7 +102,7 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
         console.error(error);
       });
     }else{
-    this.roleService.AddRole(RoleName).then((response: any) => {
+    this.roleService.AddRole({name:RoleName,countryId:this.selectedCountry}).then((response: any) => {
       this.roles.push({ id: response.value.id, name: RoleName, normalizedName: RoleName.toUpperCase(), concurrencyStamp: response.value.concurrencyStamp });
       this.roles = [...this.roles];
       this.dataSource.data = this.roles;
@@ -128,4 +135,10 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  onCountrySelected(country: any): void {
+    this.selectedCountry = country.value;
+    this.getAllRoles(country.value);
+  }
+
 }
