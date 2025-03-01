@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { EndpointsServices } from '../const/endpoints';
+import { Messages } from 'src/assets/Messages/Messages';
 
 @Injectable({
   providedIn: 'root',
@@ -35,12 +36,9 @@ export class AuthService {
   public async forgotPassword(username: string) {
     try {
       await this.apiService.get(EndpointsServices.FORGOT_PASS + username);
-      this.utilsService.showToast(
-        'Se ha enviado un correo con instrucciones',
-        'info'
-      );
+      this.utilsService.showToast(Messages.FORGOT_PASSWORD, 'info');
     } catch (error) {
-      this.utilsService.showToast('Error al recuperar contraseña', 'error');
+      this.utilsService.showToast(Messages.ERROR_FORGOT_PASSWORD, 'error');
     }
   }
 
@@ -50,16 +48,10 @@ export class AuthService {
         EndpointsServices.RESET_PASS,
         requestData
       );
-      this.utilsService.showToast(
-        'Su contraseña se ha actualizado correctamente, por favor iniciar session.',
-        'info'
-      );
+      this.utilsService.showToast(Messages.PASSWORD_UPDATED, 'info');
       return response;
     } catch (error) {
-      this.utilsService.showToast(
-        'Error al actualizar su contraseña por favor intentelo de nuevo',
-        'error'
-      );
+      this.utilsService.showToast(Messages.ERROR_PASSWORD_UPDATED, 'error');
       return null;
     }
   }
