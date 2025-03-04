@@ -54,10 +54,23 @@ const routes: Routes = [
       {
         path: 'type-request',
         loadChildren: () =>
-          import('../type-request/type-request.module').then((m) => m.TypeRequestModule),
+          import('../type-request/type-request.module').then(
+            (m) => m.TypeRequestModule
+          ),
         data: {
           breacrumb: 'type-request',
           title: 'Tipo de requerimiento',
+        },
+      },
+      {
+        path: 'parameters',
+        loadChildren: () =>
+          import('../parameter/parameter.module').then(
+            (m) => m.ParameterModule
+          ),
+        data: {
+          breacrumb: 'parameters',
+          title: 'Parametros generales',
         },
       },
     ],

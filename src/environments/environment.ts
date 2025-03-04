@@ -91,6 +91,22 @@ export const environment = {
         },
       ],
     },
+    {
+      text: 'Configuración',
+      subText: 'Gestión de configuración',
+      icon: 'settings',
+      module: 'configuracion',
+      enabled: true,
+      children: [
+        {
+          text: 'Parametros',
+          icon: 'list_alt_check',
+          module: 'parameters',
+          enabled: true,
+          routerLink: 'parameters',
+        },
+      ],
+    },
   ],
   maxlengthInput: 50,
   maxlengthTextArea: 100,
