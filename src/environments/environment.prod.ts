@@ -3,34 +3,6 @@ export const environment = {
   apiUrl: 'https://back-cc-d4cncraae5bdebhz.eastus2-01.azurewebsites.net/api',
   cacheDuration: 28800000,
   menu: [
-    // {
-    //   text: 'Inicio',
-    //   subText: 'Inicio',
-    //   icon: 'house',
-    //   routerLink: 'home',
-    //   module: 'inicio',
-    // },
-    // {
-    //   text: 'Seguridad',
-    //   subText: 'Gestión de seguridad',
-    //   icon: 'admin_panel_settings',
-    //   module: 'Seguridad',
-    //   enabled: true,
-    //   children: [
-    //     {
-    //       text: 'Países',
-    //       icon: 'flag',
-    //       module: 'Country',
-    //       enabled: true,
-    //     },
-    //     {
-    //       text: 'Regiones',
-    //       icon: 'signpost',
-    //       module: 'Region',
-    //       enabled: true,
-    //     },
-    //   ],
-    // },
     {
       text: 'Ordenes de trabajo',
       subText: 'Gestión ordenes de trabajo',
@@ -88,6 +60,22 @@ export const environment = {
           module: 'Menu-Role',
           enabled: true,
           routerLink: 'MenuRoles',
+        },
+      ],
+    },
+    {
+      text: 'Configuración',
+      subText: 'Gestión de configuración',
+      icon: 'settings',
+      module: 'configuracion',
+      enabled: true,
+      children: [
+        {
+          text: 'Parametros',
+          icon: 'list_alt_check',
+          module: 'parameters',
+          enabled: true,
+          routerLink: 'parameters',
         },
       ],
     },

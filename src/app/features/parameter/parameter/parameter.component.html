@@ -1,0 +1,8 @@
+<div class="container-component">
+  <h2>{{ config.title }}</h2>
+  <app-generic-table
+    [data]="testData"
+    [columns]="displayColumns"
+    (actionEvent)="handleAction($event)"
+  ></app-generic-table>
+</div>
