@@ -1,12 +1,8 @@
 <div class="container-component">
   <hr />
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
+      <mat-card-title class="custom-title">
         {{config.i18n.title}}
       </mat-card-title>
-    </mat-card-header>
-  </mat-card>
   <mat-card-content>
     <form [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div class="contianer">
@@ -30,14 +26,6 @@
                 {{config.i18n.maximumCharacters}} 50
               </mat-error>
             </mat-form-field>
-            <!-- <mat-form-field  appearance="outline" class="full-width">
-              <mat-label>{{config.i18n.password}}</mat-label>
-              <input matInput type="password" formControlName="password" required />
-              <mat-hint align="end">{{ userForm.controls.password.value?.length || 0 }}/50</mat-hint>
-              <mat-error *ngIf="userForm.controls.password.hasError('maxlength')">
-                {{config.i18n.maximumCharacters}} 50
-              </mat-error>
-            </mat-form-field> -->
           </div>
           <div class="col-md-4">
             <mat-form-field appearance="outline" class="full-width">
@@ -51,7 +39,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>{{config.i18n.email}}</mat-label>
               <input matInput type="email" formControlName="email" required/>
@@ -64,7 +52,7 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>{{config.i18n.phoneNumber}}</mat-label>
               <input matInput type="tel" formControlName="phoneNumber" pattern="[0-9]*" inputmode="numeric" required />
@@ -77,9 +65,22 @@
               </mat-error>
             </mat-form-field>
           </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{config.i18n.dniNumnber}}</mat-label>
+              <input matInput type="tel" formControlName="dniNumnber" pattern="[0-9]*" inputmode="numeric" required />
+              <mat-hint align="end">{{ userForm.controls.dniNumnber.value?.length || 0 }}/20</mat-hint>
+              <mat-error *ngIf="userForm.controls.dniNumnber.hasError('maxlength')">
+                {{config.i18n.maximumCharacters}} 13
+              </mat-error>
+              <mat-error *ngIf="userForm.controls.dniNumnber.hasError('pattern')">
+                {{config.i18n.onlyNumbers}}
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div *ngIf="isSuperAdmin" class="col-md-6">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>{{config.i18n.countryId}}</mat-label>
               <mat-select formControlName="countryId" required>
@@ -89,7 +90,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+          <div *ngIf="!isTechnicalContractor"  class="col-md-6">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>{{config.i18n.rolName}}</mat-label>
               <mat-select formControlName="rolName" required>
@@ -100,9 +101,15 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 text-right">
-          <button mat-raised-button color="primary" type="submit">
+        
+        <div class="col-md-6 text-right">
+          <button mat-raised-button color="accent" type="submit">
             {{config.i18n.saveButton}}
+          </button>
+        </div>
+        <div class="col-md-6 text">
+          <button mat-raised-button color="primary" routerLink="/home/User">
+            {{config.i18n.cancelButton}}
           </button>
         </div>
       </div>

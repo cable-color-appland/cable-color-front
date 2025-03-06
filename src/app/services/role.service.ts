@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { SessionService } from './session.service';
 import { UtilsService } from './utils.service';
 import { Messages } from 'src/assets/Messages/Messages';
+import { Role } from '@shared/models/role';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,7 @@ export class RoleService {
     }
   }
 
-  public async EditRole(roleId: number, role: any) {
+  public async EditRole(role: any) {
     try {
       return await this.apiService.put(
         `${EndpointsServices.Roles}`,
@@ -83,7 +84,7 @@ export class RoleService {
 
   public async getRolesByCountryId(countryId: string) {
     try {
-      return await this.apiService.get(`${EndpointsServices.Roles}/GetRolesByCountryId/${countryId}`);
+      return await this.apiService.get<Array<Role>>(`${EndpointsServices.Roles}/GetByCountryIdAsync/${countryId}`);
     } catch (error) {
       return null;
     }
