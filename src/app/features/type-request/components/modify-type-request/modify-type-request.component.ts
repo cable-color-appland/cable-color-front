@@ -47,6 +47,7 @@ export class ModifyTypeRequestComponent implements OnInit {
   }
 
   modifyEntity(entity: TypeRequest): void {
+    entity.dateCreated = this.typeRequestModify.dateCreated;
     this.apiService.put<TypeRequest>(`${EndpointsServices.GET_ALL_TYPE_REQUESTS}/${entity.id}`, entity).then((response: TypeRequest) => {
       this.utilsService.showToast(this.config.i18n.typeRequestUpdated, 'success');
       this.router.navigate(['/home/type-request']);

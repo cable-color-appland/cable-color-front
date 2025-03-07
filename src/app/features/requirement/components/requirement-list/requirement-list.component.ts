@@ -32,10 +32,6 @@ export class RequirementListComponent implements OnInit {
     // Filter by Ongoing
     const statudIdOngoing = this.statuses.find((status) => status.name === this.config.i18n.statusOngoing)?.id || '';    
     this.loadOngoingRequirements(statudIdOngoing);
-
-    // Filter by finished 
-    const statudIdFinish = this.statuses.find((status)=> status.name === this.config.i18n.statusFinish)?.id || '';
-    this.loadFinishedRequirements(statudIdFinish);
   }
 
   loadAllStatus() {
@@ -44,12 +40,6 @@ export class RequirementListComponent implements OnInit {
         this.statuses = response;
         this.loadValues();
       }
-    });
-  }
-
-  loadFinishedRequirements(statudId:string) {
-    this.apiService.get<Array<Requirement>>(`${EndpointsServices.GET_REQUIREMENT_BY_STATUS}${statudId}`, false).then((response: Array<Requirement>) => {
-      this.finishedRequirements = response;
     });
   }
 
