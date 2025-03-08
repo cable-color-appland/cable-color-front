@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListTypeRequestCongif } from './list-type-request.config';
-import { TypeRequest } from '@shared/models/TypeRequest';
+import { TypeRequest } from '@shared/models/type-request';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
 import { EndpointsServices } from 'src/app/const/endpoints';

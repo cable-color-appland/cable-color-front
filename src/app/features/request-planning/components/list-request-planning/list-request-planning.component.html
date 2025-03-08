@@ -1,0 +1,36 @@
+<div class="container-component">
+  <hr />
+  <!-- tittle  -->
+  <div class="row">
+    <div class="col-md-12 ustify-content-start">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{config.i18n.title}}
+          </mat-card-title>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+  <hr />
+  
+  <!-- create button  -->
+  <div class="row">
+    <div class="offset-md-10">
+      <mat-card>
+        <a mat-raised-button color="accent" routerLink="create">{{ config.i18n.createButton }}</a>
+      </mat-card>
+    </div>
+  </div>
+  <hr/>
+
+  <!-- table  -->
+   <div class="col-md-12">
+    <app-generic-table
+    [data]="dataValues"
+    [columns]="config.i18n.displayColumns"
+    (actionEvent)="handleAction($event)"
+  ></app-generic-table>
+   </div>
+  
+</div>

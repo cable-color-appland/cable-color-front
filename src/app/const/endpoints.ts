@@ -17,4 +17,7 @@ export const EndpointsServices = {
   GET_ALL_TYPE_REQUESTS: 'TypeRequest',
   FORGOT_PASS: 'User/ForgotPassword?userName=',
   RESET_PASS: 'User/ResetPassword',
+  PLANNING_STATE:'PlanningState',
+  REQUEST_PLANNING:'RequestPlanning',
+  TYPE_PROJECT:'TypeProject',
 };

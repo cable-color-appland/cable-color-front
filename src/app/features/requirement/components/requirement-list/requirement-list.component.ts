@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequirementListConfig } from './requirement-list.config';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
-import { Status } from '@shared/models/Status';
+import { Status } from '@shared/models/status';
 import { Requirement } from '@shared/models/requirement';
 import { EndpointsServices } from 'src/app/const/endpoints';
 

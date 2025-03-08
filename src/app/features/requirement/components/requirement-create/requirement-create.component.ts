@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Priority } from '@shared/models/priority';
-import { TypeRequest } from '@shared/models/TypeRequest';
+import { TypeRequest } from '@shared/models/type-request';
 import { EndpointsServices } from 'src/app/const/endpoints';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
 import { RequirementCreateConfig } from './requirement-create.config';
 import { UtilsService } from 'src/app/services/utils.service';
-import { Status } from '@shared/models/Status';
+import { Status } from '@shared/models/status';
 import { Requirement } from '@shared/models/requirement';
 import { Router } from '@angular/router';
 import { Region } from '@shared/models/region';

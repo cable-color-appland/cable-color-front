@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateTypeRequestCongif } from './create-type-request.config';
-import { TypeRequest } from '@shared/models/TypeRequest';
+import { TypeRequest } from '@shared/models/type-request';
 import { ApiService } from 'src/app/services/api.service';
 import { SessionService } from 'src/app/services/session.service';
 import { UtilsService } from 'src/app/services/utils.service';

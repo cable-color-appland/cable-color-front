@@ -3,7 +3,7 @@ import { ModifyTypeRequestCongif } from './modify-type-request.config';
 import { ApiService } from 'src/app/services/api.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TypeRequest } from '@shared/models/TypeRequest';
+import { TypeRequest } from '@shared/models/type-request';
 import { EndpointsServices } from 'src/app/const/endpoints';
 
 @Component({
