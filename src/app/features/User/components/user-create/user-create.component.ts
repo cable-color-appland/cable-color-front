@@ -6,10 +6,11 @@ import { EndpointsServices } from 'src/app/const/endpoints';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Messages } from 'src/assets/Messages/Messages';
 import { UserCreateConfig } from './user-create.config';
-import { environment } from '@environments/environment';
 import { SessionService } from 'src/app/services/session.service';
-import { Role } from '@shared/models/role';
-import { iif } from 'rxjs';
+import { RoleService } from 'src/app/services/role.service';
+import { MatSelectChange } from '@angular/material/select';
+import { DniValidatorService } from 'src/app/services/dni.service';
+import { User } from '@shared/models/user';
 
 @Component({
   selector: 'app-user-create',
@@ -20,64 +21,44 @@ export class UserCreateComponent implements OnInit {
   public config = UserCreateConfig;
   countries: any;
   roles: any;
-  private _formBuilder = inject(FormBuilder);
+  userForm!: FormGroup;
   isSuperAdmin: boolean;
   selectedCountry: string = '';
   isTechnicalContractor: boolean;
+  dniValidator: DniValidatorService;
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private apiServie: ApiService,
+    private readonly roleService: RoleService,
     private readonly utilsService: UtilsService,
-    private readonly sessionService: SessionService
+    private readonly sessionService: SessionService,
+    private _dniValidator: DniValidatorService
   ) {
+    this.dniValidator = _dniValidator;
     this.isSuperAdmin = this.sessionService.isSuperAdmin();
     this.isTechnicalContractor = this.sessionService.isTechnicalContractor();
-    console.log("🚀 ~ UserCreateComponent ~ this.isTechnicalContractor:", this.isTechnicalContractor)
-    console.log('🚀 ~ UserCreateComponent ~ isSuperAdmin:', this.isSuperAdmin);
     this.selectedCountry = this.sessionService.getUserField('CountryId');
   }
 
-  userForm = this._formBuilder.group({
-    userName: ['', Validators.maxLength(environment.maxlengthInput)],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(environment.maxlengthInput),
-      ],
-    ],
-    phoneNumber: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[0-9]*$'),
-        Validators.maxLength(20),
-      ],
-    ],
-    dniNumnber: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[0-9]*$'),
-        Validators.maxLength(20),
-      ],
-    ],
-    firstName: [
-      '',
-      [Validators.required, Validators.maxLength(environment.maxlengthInput)],
-    ],
-    lastName: [
-      '',
-      [Validators.required, Validators.maxLength(environment.maxlengthInput)],
-    ],
-    rolId: ['', Validators.required],
-    countryId: ['', Validators.required],
-  });
-
   ngOnInit() {
-    this.loadCountries();
-    this.loadRoles();
+    this.userForm = this.fb.group({
+      userName: ['', [Validators.required, Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(13)]],
+      dni: ['',     { 
+        validators: [Validators.required], 
+        asyncValidators: [this.dniValidator.checkDniExists()], 
+        updateOn: 'change'
+      }],
+      roleId: ['', Validators.required],
+      countryId: ['', Validators.required]
+    });
+
+    this.loadRoles(this.sessionService.getUserField('CountryId'));
+    this.setDefaultCountry();
   }
 
   submitForm() {
@@ -88,8 +69,9 @@ export class UserCreateComponent implements OnInit {
         phoneNumber: this.userForm.value.phoneNumber,
         firstName: this.userForm.value.firstName,
         lastName: this.userForm.value.lastName,
-        rolId: this.userForm.value.rolId,
+        roleId: this.userForm.value.roleId,
         countryId: this.userForm.value.countryId,
+        Dni: this.userForm.value.dni,
       };
 
       this.apiServie
@@ -106,40 +88,18 @@ export class UserCreateComponent implements OnInit {
     }
   }
 
-  async loadCountries() {
-    if (this.isSuperAdmin) {
-      await this.apiServie
-        .get(EndpointsServices.GET_ALL_COUNTRY)
+  async loadRoles(countryId: string) {
+    if (!this.isTechnicalContractor) {
+      await this.roleService
+        .getRolesByCountryId(countryId)
         .then((response) => {
-          this.countries = response;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }else{
-      this.setDefaultCountry();
-      console.log("values formulario",this.userForm.value);
-    }
-  }
-
-  async loadRoles() {
-    if(!this.isTechnicalContractor){
-      const roleName = this.sessionService.getUserField('Role');
-      const countryId = this.sessionService.getUserField('CountryId');
-      await this.apiServie
-        .get<Array<Role>>(
-          `${EndpointsServices.GET_ROLES_BY_ID}${roleName}/${countryId}`,
-          false
-        )
-        .then((response: Array<Role>) => {
           this.roles = response;
         })
         .catch((error) => {
           console.error('Error getting roles:', error);
         });
-    }else{
+    } else {
       this.setDefaultRoleId();
-      console.log("values formulario",this.userForm.value);
     }
   }
 
@@ -150,7 +110,13 @@ export class UserCreateComponent implements OnInit {
   }
   private setDefaultRoleId(): void {
     if (this.isTechnicalContractor) {
-      this.userForm.patchValue({ rolId: this.sessionService.getUserField('RoleId') }); // Reemplaza con el valor adecuado
+      this.userForm.patchValue({
+        roleId: this.sessionService.getUserField('RoleId'),
+      });
     }
+  }
+
+  onCountrySelected(country: any): void {
+    this.loadRoles(country.value);
   }
 }

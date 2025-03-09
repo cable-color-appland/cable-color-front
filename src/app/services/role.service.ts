@@ -84,7 +84,7 @@ export class RoleService {
 
   public async getRolesByCountryId(countryId: string) {
     try {
-      return await this.apiService.get<Array<Role>>(`${EndpointsServices.Roles}/GetByCountryIdAsync/${countryId}`);
+      return await this.apiService.get<Array<Role>>(`${EndpointsServices.Roles}/GetAllByCountryId/${countryId}`, true);
     } catch (error) {
       return null;
     }

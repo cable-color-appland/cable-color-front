@@ -66,7 +66,6 @@ export class SessionService {
 
   public getUserField(field: string): any {
     const user = this.getUserData();
-    console.log("🚀 ~ SessionService ~ getUserField ~ user:", user)
     return user ? user[field] : null;
   }
 
@@ -78,13 +77,13 @@ export class SessionService {
 
   isSuperAdmin(): boolean {
     const user = this.getUserData();
-    console.log("🚀 ~ SessionService ~ isSuperAdmin ~ user:", user)
+    //console.log("🚀 ~ SessionService ~ isSuperAdmin ~ user:", user)
     const RoleSuperAdmin = 'SuperAdmin';
     return user.Role === RoleSuperAdmin;
   }
   isTechnicalContractor(): boolean {
     const user = this.getUserData();
-    console.log("🚀 ~ SessionService ~ isTechnicalContractor ~ user:", user)
+    //console.log("🚀 ~ SessionService ~ isTechnicalContractor ~ user:", user)
     const TechnicalContractor = 'TechnicalContractor';
     return user.Role === TechnicalContractor;
   }

@@ -4,6 +4,7 @@ import { EndpointsServices } from 'src/app/const/endpoints';
 import { ApiService } from 'src/app/services/api.service';
 import { CountryFilterCongif } from './country-management-filter.config';
 import { FormControl } from '@angular/forms';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-country-management-filter',
@@ -18,17 +19,22 @@ export class CountryManagementFilterComponent implements OnInit, OnChanges {
   selectedCountry: FormControl = new FormControl();
 
   config = CountryFilterCongif;
+  isSuperAdmin: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,private readonly sessionService: SessionService) {
+    this.isSuperAdmin = this.sessionService.isSuperAdmin();
+   }
 
   ngOnInit() {
-    this.apiService.get<Array<Country>>(EndpointsServices.GET_ALL_COUNTRY,true).then((response: Array<Country>) => {
-      this.countries = response;
+    if(this.isSuperAdmin){
+      this.apiService.get<Array<Country>>(EndpointsServices.GET_ALL_COUNTRY,true).then((response: Array<Country>) => {
+        this.countries = response;
+      }
+      ).catch((error) => {
+        console.error('Error getting countries:', error);
+      }
+      );   
     }
-    ).catch((error) => {
-      console.error('Error getting countries:', error);
-    }
-    );
   }
 
   onCountrySelected(event: any) {

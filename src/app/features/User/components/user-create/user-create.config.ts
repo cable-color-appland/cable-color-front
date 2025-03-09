@@ -8,6 +8,7 @@ export const UserCreateConfig = Object.freeze({
         phoneNumber: 'Número de teléfono',
         dniNumnber: 'Número de identificación',
         onlyNumbers:  'El numero de telefono no tiene un formato válido.',
+        dniExists: 'El número de identificación ya existe',
         firstName: 'Nombre',
         lastName: 'Apellido',
         rolName: 'Rol',

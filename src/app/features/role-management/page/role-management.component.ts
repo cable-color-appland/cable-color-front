@@ -55,7 +55,6 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
   getAllRoles(countryId: string = '') {
     this.roleService.getRolesByCountryId(countryId).then((response) => {
       this.roles = response ?? [];
-      console.log("🚀 ~ RoleManagementComponent ~ this.roleService.getRolesByCountryId ~ this.roles:", this.roles)
       this.dataSource.data = this.roles;
     }).catch((error) => {
       console.error('Error getting roles:', error);
@@ -136,7 +135,7 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
   
   private async createRole(roleData: any) {
     this.roleService.AddRole(roleData).then((response:any) => {
-          this.roles.push({ id: response.value.id, name: roleData.RoleName, countryId: this.selectedCountry, countryName: '', DateCreated: new Date() });
+          this.roles.push({ id: response.value.id, name: roleData.name, countryId: this.selectedCountry, countryName: '', DateCreated: roleData.DateCreated });
           this.roles = [...this.roles];
           this.dataSource.data = this.roles;
           this.utilsService.showToast(Messages.ROLE_CREATED, 'success');
@@ -153,33 +152,6 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
     this.isEditing = false;
   }
   
-
-  // addOrEditRole() {
-  //   const { RoleName, RoleId } = this.RolesForm.value;
-  //   if(this.isEditing){
-  //     this.roleService.EditRole(RoleId, {id:RoleId,name:RoleName,countryId:this.selectedCountry, DateCreated: new Date()}).then((response: any) => {
-  //       const roleIndex = this.roles.findIndex((role: any) => role.id === RoleId);
-  //       if (roleIndex !== -1) {
-  //         this.roles[roleIndex] = {
-  //           ...this.roles[roleIndex],
-  //           name: RoleName,
-  //           DateCreated: new Date(),
-  //         };
-  //       }
-  //       this.dataSource.data = this.roles;
-  //       this.utilsService.showToast(Messages.ROLE_EDITED, 'success');
-  //       this.RolesForm.reset();
-  //       this.showAddRoleInput = !this.showAddRoleInput;
-  //       this.showButtonCreateRole = !this.showButtonCreateRole;
-  //       this.isEditing = !this.isEditing;
-  //     }).catch((error) => {
-  //       this.utilsService.showToast('Error al intentar guardar el rol' + error, 'error');
-  //       console.error(error);
-  //     });
-  //   }else{
-  //  
-  // }
-  // }
 
   editRole(role: any) {
     this.RolesForm.patchValue({
