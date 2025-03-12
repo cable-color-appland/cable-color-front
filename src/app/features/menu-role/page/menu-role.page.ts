@@ -91,6 +91,7 @@ export class MenuRolePage implements OnInit {
     this.roleService.UpdateMenuByRole(this.selected, modulesAccess);
   }
   onCountrySelected(country: any): void {
+    console.log("🚀 ~ MenuRolePage ~ onCountrySelected ~ country:", country)
     this.listModule = [];
     this.getAllRoles(country.value);
   }

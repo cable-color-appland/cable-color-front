@@ -80,4 +80,9 @@ export class SessionService {
     const RoleSuperAdmin = 'SuperAdmin';
     return user.Role === RoleSuperAdmin;
   }
+  isTechnicalContractor(): boolean {
+    const user = this.getUserData();
+    const TechnicalContractor = 'TechnicalContractor';
+    return user.Role === TechnicalContractor;
+  }
 }
