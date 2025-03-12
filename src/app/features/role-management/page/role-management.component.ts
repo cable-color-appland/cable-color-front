@@ -57,7 +57,6 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
       this.roles = response ?? [];
       this.dataSource.data = this.roles;
     }).catch((error) => {
-      console.error('Error getting roles:', error);
     });
   }
 
@@ -97,7 +96,7 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
       }
       this.resetForm();
     } catch (error) {
-      this.utilsService.showToast(`Error al intentar guardar o editar el rol: ${error}`, 'error');
+      this.utilsService.showToast(`${Messages.ERROR_GENERIC} ${error}`, 'error');
       console.error(error);
     }
   }
@@ -125,11 +124,9 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
               this.isEditing = !this.isEditing;
             })
             .catch((error) => {
-              this.utilsService.showToast(
-                'Error al intentar editar el rol' + error,
+              this.utilsService.showToast(Messages.ERROR_GENERIC + error,
                 'error'
               );
-              console.error(error);
             });
   }
   
@@ -140,7 +137,7 @@ export class RoleManagementComponent implements OnInit, AfterViewInit {
           this.dataSource.data = this.roles;
           this.utilsService.showToast(Messages.ROLE_CREATED, 'success');
         }).catch((error) => {
-          this.utilsService.showToast('Error al intentar guardar el rol' + error, 'error');
+          this.utilsService.showToast(Messages.ERROR_GENERIC + error, 'error');
           console.error(error);
         });
   }

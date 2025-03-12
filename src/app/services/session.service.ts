@@ -77,13 +77,11 @@ export class SessionService {
 
   isSuperAdmin(): boolean {
     const user = this.getUserData();
-    //console.log("🚀 ~ SessionService ~ isSuperAdmin ~ user:", user)
     const RoleSuperAdmin = 'SuperAdmin';
     return user.Role === RoleSuperAdmin;
   }
   isTechnicalContractor(): boolean {
     const user = this.getUserData();
-    //console.log("🚀 ~ SessionService ~ isTechnicalContractor ~ user:", user)
     const TechnicalContractor = 'TechnicalContractor';
     return user.Role === TechnicalContractor;
   }
