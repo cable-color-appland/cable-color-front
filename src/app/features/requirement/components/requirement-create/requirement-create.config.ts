@@ -9,7 +9,7 @@ export const RequirementCreateConfig = Object.freeze({
       saveButton: 'Enviar',
       resetButton: 'Reiniciar',
       titleStep2: 'Diligenciar requerimiento',
-      titleStep3: 'Enviar requerimiento',
+      titleStep3: 'Asignación de materiales',
       clientText: 'Cliente o empresa',
       clientPlaceholder: 'Ej. ProImportados Inc.,Carl Walcott',
       placeText: 'Lugar',

@@ -73,6 +73,17 @@ const routes: Routes = [
           title: 'Parametros generales',
         },
       },
+      {
+        path:'request-planning',
+        loadChildren: () =>
+          import('../request-planning/request-planning.module').then(
+            (m) => m.RequestPlanningModule
+          ),
+        data: {
+          breadcrumb: 'Requerimiento de planeación',
+          title: 'Requerimiento de planeación',
+        },
+      }
     ],
   },
   { path: 'errorpage', component: NotFoundComponent },

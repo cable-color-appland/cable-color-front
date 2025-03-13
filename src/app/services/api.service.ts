@@ -73,7 +73,6 @@ export class ApiService {
     if (useCache && this.cache.has(cacheKey)) {
       const cachedEntry = this.cache.get(cacheKey);
       if (cachedEntry && Date.now() < cachedEntry.expiry) {
-        console.log('Cache hit:', cacheKey);
         return cachedEntry.data;
       } else {
         this.cache.delete(cacheKey);

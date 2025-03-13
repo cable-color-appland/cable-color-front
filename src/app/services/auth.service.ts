@@ -29,7 +29,6 @@ export class AuthService {
       }
     } catch (error) {
       this.utilsService.showToast('Error al ingresar' + error, 'error');
-      console.log(error);
     }
   }
 

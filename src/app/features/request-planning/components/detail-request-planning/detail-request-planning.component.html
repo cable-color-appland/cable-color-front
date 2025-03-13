@@ -1,0 +1,35 @@
+<div class="container-component">
+  <br>
+  <div class="col-md-12">
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>
+                  {{config.i18n.titleText}}
+              </mat-card-title>
+          </mat-card-header>
+      </mat-card>
+  </div>
+  <div class="col-md-12">
+      <mat-card>
+          <mat-card-content>
+              <mat-card-title>
+                  <strong>{{ config.i18n.nameText }} : {{requestPlanning.name}}</strong>
+              </mat-card-title>
+              <mat-card-subtitle>{{ config.i18n.typeProjectNameText }} : {{ requestPlanning.typeProjectName }}</mat-card-subtitle>
+              <mat-divider></mat-divider>
+              <p> <b>{{ config.i18n.planningStateNameText }}</b> : {{ requestPlanning.planningStateName }}</p>
+              <p> <b>{{ config.i18n.metersText }}</b> : {{ requestPlanning.meters }}</p>
+              <p> <b>{{ config.i18n.costText }}</b> : {{ requestPlanning.cost }}</p>
+              <p> <b>{{ config.i18n.assigmenetDateText }}</b> : {{ requestPlanning.assignmentDate | date:'dd/MM/yyyy hh:mm:ss a' }}</p>
+              <p> <b>{{ config.i18n.initialDateText }}</b> : {{ requestPlanning.InitiationDate  | date:'dd/MM/yyyy hh:mm:ss a' }}</p>
+              <p> <b>{{ config.i18n.assignedNameText }}</b> : {{ requestPlanning.assignedName }}</p>
+              <p> <b>{{ config.i18n.dateCreatedText }}</b> : {{ requestPlanning.dateCreated | date:'dd/MM/yyyy hh:mm:ss a' }}</p>
+          </mat-card-content>
+      </mat-card>
+  </div>
+  <div class="offset-md-10">
+      <mat-card>
+          <a mat-raised-button color="primary" routerLink="/home/request-planning">{{ config.i18n.backButton }}</a>
+      </mat-card>
+  </div>
+</div>

@@ -13,7 +13,7 @@
     </div>
     <mat-divider></mat-divider>
     <div class="row">
-        <div class="offset-md-10">
+        <div class="offset-md-9 col-md-3 ustify-content-end">
             <mat-card>
                 <a mat-raised-button color="accent" routerLink="create">{{ config.i18n.createButton }}</a>
             </mat-card>
@@ -23,14 +23,7 @@
     <div class="row">
         <div class="col-md-12">
             <mat-card>
-                <mat-tab-group mat-align-tabs="center">
-                    <mat-tab label="{{ config.i18n.tabLeft }}">
-                        <app-list-table [data]="ongoingRequirements"></app-list-table>
-                    </mat-tab>
-                    <mat-tab label="{{ config.i18n.tabRight }}">
-                        <app-list-table [data]="finishedRequirements"></app-list-table>
-                    </mat-tab>
-                </mat-tab-group>
+                <app-list-table [data]="ongoingRequirements"></app-list-table>
             </mat-card>
         </div>
     </div>

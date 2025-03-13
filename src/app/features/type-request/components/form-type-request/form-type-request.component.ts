@@ -7,6 +7,7 @@ import { FormTypeRequestCongif } from './form-type-request.config';
 import { environment } from '@environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
+import { RoleService } from 'src/app/services/role.service';
 
 @Component({
   selector: 'app-form-type-request',
@@ -26,13 +27,14 @@ export class FormTypeRequestComponent implements OnInit, OnChanges {
 
   constructor(private readonly apiService: ApiService,
       private readonly utilsService: UtilsService,
-      private readonly sessionService: SessionService) {
+      private readonly sessionService: SessionService,
+      private readonly roleService: RoleService) {
           this.displayCountryManagement = this.sessionService.isSuperAdmin(); 
        }
 
   private formBuilder = inject(FormBuilder);
   typeRequestForm = this.formBuilder.group({
-        id: [''],
+        id: [],
         name: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
         roleId: ['', [Validators.required]],
         countryId: ['', [Validators.required]]
@@ -56,13 +58,11 @@ export class FormTypeRequestComponent implements OnInit, OnChanges {
   }
 
   loadRolesByCountry(countryId: string = '') {
-    this.apiService.get<Array<Role>>(`${EndpointsServices.Roles}/GetRolesByCountryId/${countryId}`).then((response: Array<Role>) => {
-      this.roles = response;
-    }
-    ).catch((error) => {
-      console.error('Error getting typeRequest:', error);
-    }
-    );
+    this.roleService.getRolesByCountryId(countryId).then((response) => {
+      this.roles = response as Array<Role>;
+    }).catch((error) => {
+      console.error('Error getting roles:', error);
+    });
   }
 
   submitForm() {
