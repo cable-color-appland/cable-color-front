@@ -8,6 +8,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { SessionService } from 'src/app/services/session.service';
 import { EndpointsServices } from 'src/app/const/endpoints';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PlanningState } from '@shared/models/planning-state';
 
 @Component({
   selector: 'app-create-request-planning',
@@ -20,29 +21,30 @@ export class CreateRequestPlanningComponent implements OnInit {
   maxLenghtInput = environment.maxlengthInput;
   maxLenghtTextArea = environment.maxlengthTextArea;
   typeProjects: Array<TypeProject> = [];
+  planningStates: Array<PlanningState> = [];
   isLinear = false;
 
   constructor(private readonly apiService: ApiService,
-      private readonly sessionService: SessionService,
-      private readonly utilsService: UtilsService,
-      private readonly router: Router) { }
+    private readonly sessionService: SessionService,
+    private readonly utilsService: UtilsService,
+    private readonly router: Router) { }
 
-    private _formBuilder = inject(FormBuilder);
-  
-    firstFormGroup = this._formBuilder.group({
-      typeProjectId: ['', Validators.required],
-    });
-    
-    secondFormGroup = this._formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
-      meters: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput), Validators.pattern("^[0-9]*$")]],
-      cost: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput), Validators.pattern("^[0-9]*$")]],
-      assignmentDate: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
-      statusId: ['', Validators.required],
-    });
+  private _formBuilder = inject(FormBuilder);
+
+  firstFormGroup = this._formBuilder.group({
+    typeProjectId: ['', Validators.required],
+  });
+
+  secondFormGroup = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
+    meters: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput), Validators.pattern("^[0-9]*$")]],
+    cost: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput), Validators.pattern("^[0-9]*$")]],
+    assignmentDate: ['', [Validators.required, Validators.maxLength(this.maxLenghtInput)]],
+  });
 
   ngOnInit() {
     this.loadAllTypeProject();
+    this.loadAllPlanningStates();
   }
 
   validateNumberInput(event: KeyboardEvent) {
@@ -52,23 +54,50 @@ export class CreateRequestPlanningComponent implements OnInit {
     }
   }
 
-  loadAllTypeProject(){
-    this.apiService.get<Array<TypeProject>>(EndpointsServices.TYPE_PROJECT).then((response: Array<TypeProject>) => {
-      if(response.length > 0){
+  loadAllTypeProject() {
+    this.apiService.get<Array<TypeProject>>(EndpointsServices.TYPE_PROJECT,true).then((response: Array<TypeProject>) => {
+      if (response.length > 0) {
         this.typeProjects = response;
       }
     })
   }
 
-  sendData(requestPlanning: any){
+  loadAllPlanningStates() {
+    this.apiService.get<Array<PlanningState>>(EndpointsServices.PLANNING_STATE,true).then((response: Array<PlanningState>) => {
+      if (response.length > 0) {
+        this.planningStates = response;
+      }
+    });
+  }
+
+  validateData() {
+    if (this.firstFormGroup.valid && this.secondFormGroup.valid) {
+      const requestPlanning =
+      {
+        name: this.secondFormGroup.value.name,
+        meters: this.secondFormGroup.value.meters,
+        cost: this.secondFormGroup.value.cost,
+        assignmentDate: this.secondFormGroup.value.assignmentDate,
+        statusId: this.planningStates.find(status => status.name === this.config.i18n.statusInitial)?.id,
+        assignedId: this.sessionService.getUserField('UserId'),
+        typeProjectId: this.firstFormGroup.value.typeProjectId,
+        attachs: 'temporary attachment',
+      }
+      this.sendData(requestPlanning);
+    } else {
+      this.utilsService.showToast(this.config.i18n.requiredField, 'error');
+    }
+  }
+
+  sendData(requestPlanning: any) {
     this.apiService.post(EndpointsServices.REQUEST_PLANNING, requestPlanning).then((response: any) => {
-      if(response){
+      if (response) {
         this.utilsService.showToast(this.config.i18n.requestPlanningCreated, 'success');
         this.router.navigate(['/request-planning']);
-      }else{
+      } else {
         this.utilsService.showToast(this.config.i18n.errorCreatingRequestPlanning, 'error');
       }
-    }
+    });
   }
 
 }

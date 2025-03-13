@@ -43,7 +43,7 @@ export const environment = {
           icon: 'construction',
           module: 'planing',
           enabled: true,
-          routerLink: 'request',
+          routerLink: 'request-planning',
         },
         {
           text: 'Requerimientos Generales',

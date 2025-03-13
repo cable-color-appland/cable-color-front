@@ -17,11 +17,12 @@ export class ListRequestPlanningComponent implements OnInit {
   constructor(private readonly apiService: ApiService) { }
 
   ngOnInit() {
+    this.loadRequestPlanning();
   }
 
 
   loadRequestPlanning() {
-    this.apiService.get<Array<RequestPlanning>>(EndpointsServices.REQUEST_PLANNING, true).then((response: Array<RequestPlanning>) => {
+    this.apiService.get<Array<RequestPlanning>>(EndpointsServices.REQUEST_PLANNING).then((response: Array<RequestPlanning>) => {
       if (response.length > 0) {
         this.dataValues = response;
       }

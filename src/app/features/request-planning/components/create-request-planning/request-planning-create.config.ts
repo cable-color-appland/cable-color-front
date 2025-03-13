@@ -1,6 +1,6 @@
 export const RequestPlanningCreateConfig = Object.freeze({
     i18n: {
-      title: 'Crear requerimiento planeación',
+      title: 'Crear requerimiento de planeación',
       titleStep1: 'Seleccione un tipo de proyecto',
       typeProject: 'Tipo de proyecto',
       nextButton: 'Siguiente',
@@ -10,27 +10,18 @@ export const RequestPlanningCreateConfig = Object.freeze({
       resetButton: 'Reiniciar',
       titleStep2: 'Diligenciar requerimiento planeación',
       titleStep3: 'Asignación de materiales',
-
       nameText: 'Nombre de proyecto',
       namePlaceholder: 'Ej. Construcción de FTTH zona norte',
       assignmentDateText: 'Fecha de asignación',
-      placePlaceholder: 'Ej. 15/01/2025',
+      assignmentDatePlaceholder: 'Ej. 15/01/2025',
       metersText: 'Metros de construcción',
-      metersPlaceholder: 'Ej. 1000',
+      metersPlaceholder: 'Ej. 1900',
       costText: 'Costo de mano de obra del proyecto',
-      costPlaceholder: 'Ej. 1000000',
-
-      descriptionText: 'Descripción',
-      descriptionPlaceholder: 'Ej. Instalación extra ...',
-      contactText: 'Contacto',
-      contactPlaceholder: 'Ej. Phil Dunphy +1 333-333-33-33, Mike Gordon +54 555-555-55-55',
-      priorityText: 'Prioridad',
-      priorityPlaceholder: 'Seleccione una prioridad',
-
+      costPlaceholder: 'Ej. 29979989',
       maximumCharacters: 'Máximo de caracteres',
       requiredField: 'Debe diligenciar todos los campos',
       requestPlanningCreated: 'Requerimiento planeación creado con éxito',
       errorCreatingRequestPlanning: 'Error creando requerimiento planeación',
-      statusInitial: 'En proceso',
+      statusInitial: 'Entrega materiales',
     },
   });

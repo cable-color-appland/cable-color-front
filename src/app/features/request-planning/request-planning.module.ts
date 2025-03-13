@@ -16,7 +16,9 @@ import { ListRequestPlanningComponent } from './components/list-request-planning
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [CreateRequestPlanningComponent,ListRequestPlanningComponent],
+  declarations: [
+    CreateRequestPlanningComponent,
+    ListRequestPlanningComponent],
       providers: [
         { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
       ],

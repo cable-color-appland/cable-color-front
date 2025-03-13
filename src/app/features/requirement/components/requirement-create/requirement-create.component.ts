@@ -98,7 +98,7 @@ export class RequirementCreateComponent implements OnInit {
         assignedId: this.sessionService.getUserField('UserId'),
         typeRequestId: this.firstFormGroup.value.typeRequestId,
         projectName: '',
-        attachs: ''
+        attachs: 'temporary attachment'
       }
       this.sendData(requirement);
     } else {
