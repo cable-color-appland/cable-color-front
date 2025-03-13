@@ -21,7 +21,7 @@ import { RequirementDetailComponent } from './components/requirement-detail/requ
     FormsModule
   ],
     providers: [
-      { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+      { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },   
     ],
   
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

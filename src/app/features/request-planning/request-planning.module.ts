@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from '@shared/material/custom-paginator-intl';
@@ -20,7 +20,7 @@ import { ListRequestPlanningComponent } from './components/list-request-planning
     CreateRequestPlanningComponent,
     ListRequestPlanningComponent],
       providers: [
-        { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+        { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() }    
       ],
     
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

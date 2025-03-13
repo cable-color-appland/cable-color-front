@@ -93,7 +93,7 @@ export class CreateRequestPlanningComponent implements OnInit {
     this.apiService.post(EndpointsServices.REQUEST_PLANNING, requestPlanning).then((response: any) => {
       if (response) {
         this.utilsService.showToast(this.config.i18n.requestPlanningCreated, 'success');
-        this.router.navigate(['/request-planning']);
+        this.router.navigate(['/home/request-planning']);
       } else {
         this.utilsService.showToast(this.config.i18n.errorCreatingRequestPlanning, 'error');
       }
