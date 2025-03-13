@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { RequestPlaningRoutingModule } from './request-planning-routing.module';
 import { CreateRequestPlanningComponent } from './components/create-request-planning/create-request-planning.component';
 import { ListRequestPlanningComponent } from './components/list-request-planning/list-request-planning.component';
+import { DetailRequestPlanningComponent } from './components/detail-request-planning/detail-request-planning.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,9 @@ import { ListRequestPlanningComponent } from './components/list-request-planning
   ],
   declarations: [
     CreateRequestPlanningComponent,
-    ListRequestPlanningComponent],
+    ListRequestPlanningComponent,
+    DetailRequestPlanningComponent
+  ],
       providers: [
         { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() }    
       ],

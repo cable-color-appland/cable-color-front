@@ -11,5 +11,6 @@ export interface RequestPlanning {
     assignedId:string;
     statusId:string;
     planningStateName:string;
+    assignedName:string;
     dateCreated:Date;    
 }
