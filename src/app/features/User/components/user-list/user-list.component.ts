@@ -24,11 +24,12 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   isEmptyTable: any;
   isSuperAdmin: boolean = false;
+  selectedCountry: any;
 
   constructor(private apiService: ApiService, private router: Router, 
     private readonly sessionService: SessionService) {
     this.isSuperAdmin = this.sessionService.isSuperAdmin();
-    
+    this.selectedCountry = this.sessionService.getUserField('CountryId');
   }
 
   ngOnInit(): void {

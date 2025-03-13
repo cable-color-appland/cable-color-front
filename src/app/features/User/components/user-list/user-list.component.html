@@ -2,11 +2,11 @@
   <h1>Gestión de Usuarios</h1>
 
   <div class="col-md-12">
-    <app-country-management-filter [hidden]="!isSuperAdmin"  (countrySelected)="onCountrySelected($event)" ></app-country-management-filter>
+    <app-country-management-filter [hidden]="!isSuperAdmin" [selectedCountryId]="selectedCountry"  (countrySelected)="onCountrySelected($event)" ></app-country-management-filter>
   </div>
 
   <div class="offset-md-11">
-      <button mat-raised-button color="primary" routerLink="create" >Crear Usuario</button>
+      <button mat-raised-button color="accent" routerLink="create" >Crear Usuario</button>
   </div>
   
   <div class="mat-elevation-z8">
